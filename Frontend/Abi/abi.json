@@ -1,0 +1,54 @@
+{
+    "version": "0.1.0",
+    "name": "nft_marketplace",
+    "instructions": [
+      {
+        "name": "mintNft",
+        "accounts": [
+          { "name": "payer", "isMut": true, "isSigner": true },
+          { "name": "metadataAccount", "isMut": true, "isSigner": false },
+          { "name": "editionAccount", "isMut": true, "isSigner": false },
+          { "name": "mintAccount", "isMut": true, "isSigner": true },
+          { "name": "associatedTokenAccount", "isMut": true, "isSigner": false },
+          { "name": "tokenProgram", "isMut": false, "isSigner": false },
+          { "name": "tokenMetadataProgram", "isMut": false, "isSigner": false },
+          { "name": "associatedTokenProgram", "isMut": false, "isSigner": false },
+          { "name": "systemProgram", "isMut": false, "isSigner": false },
+          { "name": "rent", "isMut": false, "isSigner": false }
+        ],
+        "args": [
+          { "name": "nftName", "type": "string" },
+          { "name": "nftSymbol", "type": "string" },
+          { "name": "nftUri", "type": "string" }
+        ]
+      },
+      {
+        "name": "buyNft",
+        "accounts": [
+          { "name": "buyer", "isMut": true, "isSigner": true },
+          { "name": "seller", "isMut": true, "isSigner": false },
+          { "name": "sellerNftAccount", "isMut": true, "isSigner": false },
+          { "name": "buyerNftAccount", "isMut": true, "isSigner": false },
+          { "name": "delegate", "isMut": false, "isSigner": true },
+          { "name": "tokenProgram", "isMut": false, "isSigner": false },
+          { "name": "systemProgram", "isMut": false, "isSigner": false }
+        ],
+        "args": [{ "name": "price", "type": "u64" }]
+      },
+      {
+        "name": "transferNft",
+        "accounts": [
+          { "name": "buyer", "isMut": true, "isSigner": true },
+          { "name": "sellerNftAccount", "isMut": true, "isSigner": false },
+          { "name": "buyerNftAccount", "isMut": true, "isSigner": false },
+          { "name": "delegate", "isMut": false, "isSigner": true },
+          { "name": "tokenProgram", "isMut": false, "isSigner": false }
+        ],
+        "args": []
+      }
+    ],
+    "metadata": {
+      "address": "8afoLCG3qypEQBiDDP1zp1HpXAyimV2zd6j6AkYXQ3Dh"
+    }
+  }
+    
