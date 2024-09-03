@@ -183,6 +183,7 @@ export const Activitiesapi = async (data) => {
         }
     }
     let Resp = await axiosFunc(senddata)
+    
     Resp.data = Decryptdata(Resp.data)
     return Resp.data
 }
@@ -515,3 +516,15 @@ export const BurnTokens  = async(data)=>{
     
    
   }
+
+  export const NFTTOTALLIKES_API = async (data) => {
+
+    const  senddata = {
+        method: 'get',
+        url: `${config.BACK_URL}/nft/getlikes/${data}`,
+    }
+    let Resp = await axiosFunc(senddata)
+ 
+    return Resp.data
+}
+

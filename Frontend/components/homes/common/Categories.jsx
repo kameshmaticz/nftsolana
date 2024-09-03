@@ -27,9 +27,7 @@ const sortingOptions = [{key : "BLTH" ,  value : "Price Low to High" } , {key : 
   var LikeForwardRef = useRef();
   const [LikedTokenList, setLikedTokenList] = useState([]);
 
-  const [homecontent, setHomecontent] = useState([]);
 
-  const [homecontentmidd, setHomecontentmidd] = useState([]);
 
 
   const [HotAuctionData, SetHotAuction] = useState({
@@ -64,14 +62,12 @@ const sortingOptions = [{key : "BLTH" ,  value : "Price Low to High" } , {key : 
 
   useEffect(() => {
     getarticles();
-    Getandselldata();
-    Getandsellnft();
     TopCreatorFunc();
     HotAuction(1, "All");
     HotSales("All");
     // Collectionlist('All')
     CollectionByCreate("All");
-    GetPromtion();
+
   }, []);
   useEffect(() => {
     tippy("[data-tippy-content]");
@@ -254,16 +250,8 @@ const sortingOptions = [{key : "BLTH" ,  value : "Price Low to High" } , {key : 
       });
   };
 
-  const Getandselldata = async () => {
-    var resp = await getCmsContent("homepage_top");
-     console.log("cmslistdfgfd",resp.data)
-    if (resp?.status) setHomecontent(resp.data);
-  };
-  const Getandsellnft = async () => {
-    var resp = await getCmsContent("homepage_middle");
-    console.log("cmslist", resp?.data);
-    if (resp?.status) setHomecontentmidd(resp?.data);
-  };
+
+
 
   const OnChange = async (value) => {
     // console.log("vallllllllllll",value);
@@ -287,16 +275,7 @@ const sortingOptions = [{key : "BLTH" ,  value : "Price Low to High" } , {key : 
     }
   };
 
-  const GetPromtion = async () => {
-    // var resp = await Getpromotedtoken()
-    var protoken = await Getpromotedtoken();
-    console.log("DGJFGJFJD", protoken);
-    if (protoken?.success == "success") {
-      console.log(protoken?.data[0], "protoken");
-      setPromotedtoken(protoken?.data[0]);
-      setBannerstatus(false);
-    }
-  };
+
 
   useEffect(() => {
     // if(filter?.auction)

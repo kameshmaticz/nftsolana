@@ -65,9 +65,9 @@ export default function Topnft() {
   const [LikedTokenList, setLikedTokenList] = useState([]);
 
   const [homecontent, setHomecontent] = useState([]);
-console.log("dfgbdhgdfh",homecontent);
+
   const [homecontentmidd, setHomecontentmidd] = useState([]);
-console.log("homepagessss",homecontentmidd)
+
   console.log(":payload", payload);
 
   const [HotAuctionData, SetHotAuction] = useState({
@@ -103,14 +103,15 @@ console.log("homepagessss",homecontentmidd)
 
   useEffect(() => {
     getarticles();
-    Getandselldata();
-    Getandsellnft();
+    // Getandselldata();
+    // Getandsellnft();
+    // GetPromtion();
+
     TopCreatorFunc();
     HotAuction(1, "All");
     HotSales("All");
     // Collectionlist('All')
     CollectionByCreate("All");
-    GetPromtion();
   }, []);
 
   const CollectionByCreate = async (data) => {
@@ -245,49 +246,29 @@ console.log("homepagessss",homecontentmidd)
       });
   };
 
-  const Getandselldata = async () => {
-    var resp = await getCmsContent("homepage_top");
-     console.log("cmslistdfgfd",resp.data)
-    if (resp?.status) setHomecontent(resp.data);
-  };
-  const Getandsellnft = async () => {
-    var resp = await getCmsContent("homepage_middle");
-    console.log("cmslist", resp?.data);
-    if (resp?.status) setHomecontentmidd(resp?.data);
-  };
+  // const Getandselldata = async () => {
+  //   var resp = await getCmsContent("homepage_top");
+  //    console.log("cmslistdfgfd",resp.data)
+  //   if (resp?.status) setHomecontent(resp.data);
+  // };
+  // const Getandsellnft = async () => {
+  //   var resp = await getCmsContent("homepage_middle");
+  //   console.log("cmslist", resp?.data);
+  //   if (resp?.status) setHomecontentmidd(resp?.data);
+  // };
 
-  const OnChange = async (value) => {
-    // console.log("vallllllllllll",value);
-    if (value) {
-      Setval(value);
-      var Resp = await SearchAction({
-        keyword: value,
-        limit: 3,
-        page: 1,
-        from: "home",
-      });
-      // console.log("response", Resp);
-      if (Resp?.success === "success") {
-        SetSearch(Resp);
-      } else {
-        SetSearch(null);
-      }
-    } else {
-      SetSearch(null);
-      Setval("");
-    }
-  };
 
-  const GetPromtion = async () => {
-    // var resp = await Getpromotedtoken()
-    var protoken = await Getpromotedtoken();
-    console.log("DGJFGJFJD", protoken);
-    if (protoken?.success == "success") {
-      console.log(protoken?.data[0], "protoken");
-      setPromotedtoken(protoken?.data[0]);
-      setBannerstatus(false);
-    }
-  };
+
+  // const GetPromtion = async () => {
+  //   // var resp = await Getpromotedtoken()
+  //   var protoken = await Getpromotedtoken();
+  //   console.log("DGJFGJFJD", protoken);
+  //   if (protoken?.success == "success") {
+  //     console.log(protoken?.data[0], "protoken");
+  //     setPromotedtoken(protoken?.data[0]);
+  //     setBannerstatus(false);
+  //   }
+  // };
 
   useEffect(() => {
     // if(filter?.auction)
@@ -322,53 +303,9 @@ console.log("homepagessss",homecontentmidd)
     setFilter({ ...filter, ...{ collection: val } });
     setFilterview({ ...filterview, ...{ collection: show } });
   };
-  const midjourney = async (msg) => {
-    try {
-      var data = JSON.stringify({
-        msg: "msg",
-        ref: "",
-        webhookOverride: "",
-        ignorePrefilter: "false",
-      });
+;
 
-      var config = {
-        method: "post",
-        url: "https://api.thenextleg.io/v2/imagine",
-        headers: {
-          Authorization: "Bearer 014ad4ad-d99f-42a3-8539-d61da39d8d99",
-          "Content-Type": "application/json",
-        },
-        data: data,
-      };
 
-      axios(config).then(async function (response) {
-        console.log("IMAGEMESSAGEID", JSON.stringify(response.data));
-
-        if (response.data.success == true) {
-          var datas = await geturl(response.data.messageId);
-
-          if (datas) {
-            console.log("imgurlllll", datas);
-          }
-        }
-      });
-    } catch (err) {
-      console.log("ERRRRRRRR", err);
-    }
-  };
-
-  const geturl = async (id) => {
-    var progress;
-    var retdata;
-
-    do {
-      var resp = await createImg({ id: id });
-      progress = resp.data.progress;
-      console.log(progress, resp);
-    } while (Number(progress) != 100);
-
-    return retdata;
-  };
 
   useEffect(() => {
     const preventContextMenu = (event) => {

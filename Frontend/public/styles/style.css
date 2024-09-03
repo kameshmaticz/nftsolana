@@ -483,16 +483,81 @@ border:1px solid #8358ff ;
   color: white;
 }
 
+.searchset{
+  display: flex;
+  align-items: center;
+}
+.dark .boxcard{
+  border: 1px solid rgb(54 58 93);
+  background-color: rgb(54 58 93);
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+.boxcard img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.boxcard video{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.dimgset{
+  display: flex;
+  align-items: center;
+  gap: 10px 10px;
+
+
+}
+.boxcard {
+  border: 1px solid rgb(54 58 93);
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+.catname {
+   color: #000;
+}
+.dark .catname{
+  color: #a1a2b3;
+}
+
 
 .search-model {
   /* background: #fff !important; */
-  background: #2b2b2b !important;
+  /* background: #2b2b2b !important; */
+  /* background: #16163f !important; */
   position: absolute;
-  width: 100%;
+  /* width: 100%; */
+  width: 400px;
+  min-width: 400px;
   border-radius: 10px;
   z-index: 99999;
   box-shadow: 1px 1px 12px -2px #000;
   top: 80px;
+  left: 20%;
+}
+.dark .search-model {
+  background: #16163f !important;
+}
+.search-model {
+  background: #fff !important;
+}
+.dark .searchset .pTag, .dark .search-model .pTag{
+  color: #fff;
+}
+.searchset .pTag, .search-model .pTag{
+  color: #000;
+}
+.fw-600{
+   font-weight: 600;
 }
 .search-model .content {
   padding: 10px 20px 0px 10px;
@@ -511,8 +576,63 @@ border:1px solid #8358ff ;
 .search-model .content img {
   width: 35px;
   height: 35px;
+  object-fit: cover;
 }
 
+@media screen and (max-width:1024px){
+.chatset{
+  display: none;
+}
+}
+
+/* @media screen and (max-width:990px){
+.addbtn{
+  background-color: #6336E4 !important;
+}
+.addsize{
+  display: flex;
+  background: #6336E4;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  padding: 6px 8px;
+  border-radius: 10px;
+  color: #fff;
+}
+.createflex{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-bottom: 8px;
+}
+.cursor{
+  cursor: pointer;
+}
+.widthsvg{
+  width: 1rem !important;
+  height: 1rem !important;
+}
+.imgset{
+  height: 230px;
+  object-fit: cover;
+}
+.hset{
+  min-height: 40px;
+    height: 40px;
+}
 @media screen and (max-width:990px){
   .search-model{width:95% !important}
+} */
+.emsg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width:575px){
+.search-model {
+  width: 300px;
+  min-width: 300px;
+  top: 52px;
+  left: 0%;
+}
 }

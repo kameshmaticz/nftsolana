@@ -57,6 +57,8 @@ const sortingOptions = [
 ];
 export default function Collections({ params }) {
   const { category } = params;
+  console.log("🚀 ~ Collections ~ params:", params)
+  
   const [currentSorting, setCurrentSorting] = useState(sortingOptions[0]);
   const userData = useSelector((state)=>state.LoginReducer.User.payload)
   const [TabName, SetTabName] = useState(category ?? "All");

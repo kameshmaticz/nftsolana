@@ -16,6 +16,7 @@ import { CreateOrder } from "@/actions/axios/nft.axios";
 import { toast } from "react-toastify";
 import { NumANdDotOnly, isEmpty } from "@/actions/common";
 import solanacontract from '@/utlis/hooks/solanaContractHook'
+import { useRef } from "react";
 const collcections = [
   {
     id: 1,
@@ -51,38 +52,23 @@ export default function PlaceOrder({
     EndClockTime: "",
   };
   const {push} = useRouter()
-  const [pricetype, setPricetype] = useState(true);
   const [NFTFormValue, setNFTFormValue] = useState(initialTokenValue);
-  const [btn, setbtn] = useState(false);
-  const { web3p, accountAddress } = useSelector(
+  const {  accountAddress } = useSelector(
     (state) => state.LoginReducer.AccountDetails
   );
+
+  const closeref = useRef()
   const [once, setOnce] = useState(true);
-  const handleClose8 = () => setShow8(false);
-  const [show4, setShow4] = useState(true);
-  const [show8, setShow8] = useState(false);
-  const handleClose4 = () => setShow4(false);
+ 
   const [BtnData, SetBtnData] = useState("start");
-  const [TokenBtn, SetTokenBtn] = useState("start");
-  const [Mintbtn, SetMintbtn] = useState("start");
-  const [dropdown, setdropdown] = useState(false);
-  const [dropdown1, setdropdown1] = useState(false);
-  const [modal, setModal] = useState("");
-  const [OpenPopup, SetOpenPopup] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
+ 
   const { currency } = useSelector((state) => state.LoginReducer);
   const ContractCall = solanacontract() 
-  // useContractProviderHook();
-  const { Network } = useSelector((state) => state.LoginReducer);
  
   const { payload } = useSelector((state) => state.LoginReducer.User);
-  const { web3 } = useSelector((state) => state.LoginReducer.AccountDetails);
-  const { sellerFees } = useSelector((state) => state.LoginReducer.ServiceFees);
 
   const [FormValue, SetFormValue] = useState({...item,"CoinName" : "SOL"});
   const [ValidateError, SetValidateError] = useState({});
-  console.log("skgshkdfgds", item);
-  console.log("CURRin putonsale", currency,FormValue);
   useEffect(() => {
     // if (!FormValue?.CoinName) {
       SetFormValue({
@@ -162,9 +148,6 @@ export default function PlaceOrder({
         );
         console.log("Statu",Statu)
         if (Statu?.status == true) {
-          setShow4(false);
-          setShow8(true);
-          SetBtnData("process");
           toast.update(id, {
             render: "Ready To Place Order",
             type: "success",
@@ -175,12 +158,9 @@ export default function PlaceOrder({
           });
           ListCall(Statu)
         } else {
-          setShow4(false);
-          setShow8(true);
-          SetBtnData("open");
           toast.update(id, {
-            render: "Get APProve",
-            type: "success",
+            render: "Something issue Please try agian",
+            type: "error",
             isLoading: false,
             autoClose: 1000,
             closeButton: true,
@@ -304,7 +284,7 @@ export default function PlaceOrder({
   ];
   async function ListCall(data) {
     const id = toast.loading("Listing Processing");
-    SetMintbtn("process");
+    // SetMintbtn("process");
     if (FormValue.PutOnSaleType == "FixedPrice") {
       var error = await ContractCall.Contract_Base_Validation();
       console.log("====================================");
@@ -474,8 +454,7 @@ export default function PlaceOrder({
         closeButton: true,
         closeOnClick: true,
       });
-      // SetMintbtn("done");
-      closePop()
+      closeref.current.click()
       push("/user/" + payload.CustomUrl, { state: { Tab: "owned" } });
     } else {
       console.log("dsahgdhasgjgdjasd");
@@ -493,7 +472,7 @@ export default function PlaceOrder({
 
   useEffect(() => {
     // BalanceCheck();
-  }, [item, owner]);
+  }, [item, owner]);  
 
   async function BalanceCheck() {
     SetMintbtn("process");
@@ -608,7 +587,8 @@ export default function PlaceOrder({
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-                onClick={() => closePop()}
+                ref={closeref}
+                // onClick={() => closePop()}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

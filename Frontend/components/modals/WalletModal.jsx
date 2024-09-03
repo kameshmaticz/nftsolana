@@ -17,8 +17,8 @@ export default function WalletModal() {
 
       // Check if the click occurred outside of modal-content but inside walletModal
       if (
-        !modalContent.contains(event.target) &&
-        walletModal.contains(event.target)
+        !modalContent?.contains(event.target) &&
+        walletModal?.contains(event.target)
       ) {
         // Click occurred outside of modal-content but inside walletModal
         // Your code to handle this scenario goes here

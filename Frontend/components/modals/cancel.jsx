@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import solanacontract from '@/utlis/hooks/solanaContractHook'
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from "next/navigation"
 import { toast } from 'react-toastify';
@@ -16,13 +16,10 @@ export default function Cancel({
 
 
     const {push} = useRouter()
-
+    const closeref = useRef()
     const [Btn, SetBtn] = useState('start')
-    const [show9, setShow9] = useState(true);
-    const ContractCall = solanacontract()
-    const { web3, accountAddress } = useSelector(state => state.LoginReducer.AccountDetails);
+    const {  accountAddress } = useSelector(state => state.LoginReducer.AccountDetails);
     const { payload } = useSelector(state => state.LoginReducer.User)
-    const [once, setOnce] = useState(true)
     const FormSubmit = async () => {
         // debugger
         SetBtn('process')
@@ -40,7 +37,7 @@ export default function Cancel({
                     await Back_end(id, "")
                     console.log("cassssncelorgerifstattement")
 
-                    handleClose9()
+                    // handleClose9()
                 // }
                 // else {
                 //     toast.update(id, { render: 'Transaction Failed', type: 'error', isLoading: false, autoClose: 1000, closeButton: true, closeOnClick: true })
@@ -75,9 +72,11 @@ export default function Cancel({
         // debugger
         let Resp = await CreateOrder(owner)
         if (Resp.success == 'success') {
+
             toast.update(id, { render: "Cancelled Your Order Successfully", type: "success", isLoading: false, autoClose: 1000, closeButton: true, closeOnClick: true })
             SetBtn('done')
-            closePop();
+            closeref.current.click()
+            // closePop();
             window.location.reload();
         }
         else {
@@ -109,6 +108,7 @@ export default function Cancel({
                                 className="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
+                                ref={closeref}
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

@@ -38,7 +38,6 @@ export default function RootLayout({ children }) {
           "overflow-x-hidden font-body text-jacarta-500 dark:bg-jacarta-900"
         }
       >
-        
         <StoreProvider>
         <ToastContainer
           position="top-right"
@@ -52,27 +51,14 @@ export default function RootLayout({ children }) {
           pauseOnHover
           theme="light"
         />
-        {/* <Walletproviders> */}
         <ModeChanger />
-        {/* <MetaMaskProvider> */}
         {children}
-        {/* </MetaMaskProvider> */}
         <WalletModal />
-        {/* <BuyModal />
-        <BidModal /> */}
         <PropertiesModal />
         <LevelsModal />
-        {/* <CreateModal /> */}
-        {/* <ReportModal /> */}
-        {/* <CancelModal /> */}
-        {/* <ShareModal /> */}
         <ConnectWalletModal />
         <OnsaleandChangeprice />
-        {/* <ToastContainer /> */}
-        {/* </Walletproviders> */}
         </StoreProvider>
-        
-    
       </body>
     </html>
   );

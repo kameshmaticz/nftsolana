@@ -49,11 +49,62 @@ export default function Activity({ datas, Loadmore, List, userProfile, Loader })
   }, [currentCategory]);
 
   return (
+    <>
+     {datas?.list?.length != 0 &&    datas?.list.map((item, key ) => (
+
+     <div className="boxcard" key={key} >
+          <div  className="dimgset"> 
+            <figure className="mr-5 self-start">
+              <ImgAudVideo
+              // classname="imageall"
+                   file={item?.CompressedFile !== undefined ? item?.CompressedFile?.split(':')[0] == 'https' ? item?.CompressedFile : `${config.IMG_URL}/nft/${item?.Creator}/Compressed/NFT/${item?.CompressedFile}` : item?.CompressedFile?.split(':')[0] == 'https' ? item.CompressedFile : `${config.IMG_URL}/nft/${item?.Creator}/Original/NFT/${item.CompressedFile}`}
+                   origFile={item?.OriginalFile?.split(':')[0] == 'https' ? item?.OriginalFile : `${config.IMG_URL}/nft/${item?.Creator }/Original/NFT/${item?.OriginalFile ? item?.OriginalFile  : item?.CompressedFile}`}
+                   thumb={`${config.IMG_URL}/nft/${item.Creator}/Compressed/NFT_THUMB/${item?.CompressedThumbFile}`}
+                   type={
+                     item?.CompressedFile
+                       ? item?.CompressedFile?.includes(".webp") || item?.CompressedFile?.includes(".png")
+                         ? "image"
+                         : item?.CompressedFile.includes(".webm")
+                           ? "video"
+                           : "audio"
+                       : item?.CompressedFile
+                   }
+              />
+            </figure>
+
+            <div>
+              <h3 className="mb- font-display text-base font-semibold text-jacarta-700 dark:text-white">
+                Name : {item?.TokenName?.length > 10 ? <>{item.TokenName.slice(0, 10)}...</> : item.TokenName}
+              </h3>
+              <span className="mb-2 block text-sm text-jacarta-500 dark:text-jacarta-200">
+              Activity : {item.Activity}  
+              </span>
+              <span className="mb-3 block text-sm text-jacarta-500 dark:text-jacarta-200"> Category :   {item.Category} </span>
+            </div>
+
+            {/* <div className="ml-auto rounded-full border border-jacarta-100 p-3 dark:border-jacarta-600">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                className="fill-jacarta-700 dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+            
+              </svg>
+            </div> */}
+            </ div>
+       
+     </div> ))}
+
+
+
     <div className="lg:flex">
-      {/* Records */}
-      <div className="mb-10 shrink-0 basis-8/12 space-y-5 lg:mb-0 lg:pr-10">
-        {datas?.list?.length !== 0 &&    datas?.list.map((item, key ) => (
-          <div>
+      
+      {/* <div className="mb-10 shrink-0 basis-8/12 space-y-5 lg:mb-0 lg:pr-10">
+        {datas?.list?.length != 0 &&    datas?.list.map((item, key ) => (
+          <div key={key}>
             <figure className="mr-5 self-start">
               <ImgAudVideo
                    file={item?.CompressedFile !== undefined ? item?.CompressedFile?.split(':')[0] == 'https' ? item?.CompressedFile : `${config.IMG_URL}/nft/${item?.Creator}/Compressed/NFT/${item?.CompressedFile}` : item?.CompressedFile?.split(':')[0] == 'https' ? item.CompressedFile : `${config.IMG_URL}/nft/${item?.Creator}/Original/NFT/${item.CompressedFile}`}
@@ -90,13 +141,12 @@ export default function Activity({ datas, Loadmore, List, userProfile, Loader })
                 className="fill-jacarta-700 dark:fill-white"
               >
                 <path fill="none" d="M0 0h24v24H0z" />
-                {/* <path d={elm.svgPath} /> */}
               </svg>
             </div>
             </ div>
         ))}
-      </div>
-
+      </div> */}
+      
       {/* Filters */}
       {/* <aside className="basis-4/12 lg:pl-5">
         <form
@@ -167,5 +217,6 @@ export default function Activity({ datas, Loadmore, List, userProfile, Loader })
         </div>
       </aside> */}
     </div>
+    </>
   );
 }

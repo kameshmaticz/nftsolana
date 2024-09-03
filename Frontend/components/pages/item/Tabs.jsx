@@ -8,7 +8,8 @@ export default function Tabs({
   offers,
   properties,
   NFTId,
-  POPUPACTION
+  POPUPACTION,
+  TokenActivities
 }) {
   return (
     <div className="scrollbar-custom mt-14 overflow-x-auto rounded-lg">
@@ -194,7 +195,7 @@ export default function Tabs({
             aria-labelledby="activity-tab"
           >
             {/* Filter */}
-            <Activity />
+            <Activity data={TokenActivities}/>
           </div>
 
           {/* Price History */}

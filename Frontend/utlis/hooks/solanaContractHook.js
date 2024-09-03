@@ -665,6 +665,7 @@ export default function Usewallet() {
     walletAddress,
     nftAddress
   ) => {
+    try{
     const delegateAddress = Keypair.generate();
     console.log(
       "🚀 ~ nftDelegateApprove ~ delegateAddress:",
@@ -694,6 +695,11 @@ export default function Usewallet() {
         delegateSecKey : string
     }
     return retData;
+  }catch(err){
+    return {
+      status : false
+  }
+  }
   };
 
  

@@ -16,6 +16,7 @@ import Nftcard from "@/components/card/nftcard";
 import { Loader } from "@solana/web3.js";
 
 export default function Collcetions({params}) {
+  console.log("🚀 ~ Collcetions ~ params:", params)
   const [allItems, setAllItems] = useState(useritems);
   useEffect(() => {
     tippy("[data-tippy-content]");
@@ -103,7 +104,8 @@ console.log("customurl",customurl);
 
   useEffect(()=>{
       getProfileDetails() 
-      setFilter(location?.state?.Tab ? location?.state?.Tab  :  'activity')
+      // setFilter(location?.state?.Tab ? location?.state?.Tab  :  'activity')
+      setFilter('activity')
    
 
   },[])
@@ -209,7 +211,7 @@ console.log("customurl",customurl);
           filter: 'LatestDrops',
       }
       let Resp = await Token_MyList_Func(SendDATA)
-      console.log("Token_MyList_Func" , Resp , filter)
+      console.log("Token_MyList_Func" ,SendDATA , Resp , filter)
       setLoader((Resp?.data?.length == 0 || (SendDATA?.TabName == "usercollection" && Resp?.cursor == null)) ? false : true)
       if (Resp?.success == 'success' && Resp?.data?.length > 0) {
 
@@ -408,7 +410,9 @@ console.log("customurl",customurl);
               role="tab"
               aria-controls="activity"
               aria-selected="false"
-              onClick={ ()=>setFilter("activity")}
+              onClick={ ()=>{
+                SetTabName("activity")
+                setFilter("activity")}}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -426,13 +430,14 @@ console.log("customurl",customurl);
             </button>
           </li>
         </ul>
+        {console.log("filterfilterfilter" , value)}
 
      {  
     //  loader 
-     Tokens?.[value]?.loader
-     ? 
-     <div> loading  </div> 
-     :
+    //  Tokens?.[value]?.loader || value != "activity" 
+    //  ? 
+    //  <div> loading  </div> 
+    //  :
       <div className="tab-content">
         
         {/* <Filter /> */}
@@ -1052,7 +1057,7 @@ console.log("customurl",customurl);
           {/* end collections tab */}
 
           {/* Activity Tab */}
-          {filter == "activity" && <div
+          {filter === "activity" && <div
             className="tab-pane fade"
             id="activity"
             role="tabpanel"

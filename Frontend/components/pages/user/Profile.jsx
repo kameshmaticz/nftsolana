@@ -11,6 +11,7 @@ import { userRegister } from "@/actions/axios/user.axios";
 import Config from '@/Config/config'
 
 export default function Profile({params}) {
+  console.log("🚀 ~ Profile ~ params:", params)
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   const [CustomUrl,setCustomurl]=useState(params?.customurl);
   const [userData, setUserData] = useState({});

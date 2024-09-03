@@ -6,17 +6,40 @@ import tippy from "tippy.js";
 const languages = ["English", "Español", "Deutsch"];
 
 //npm
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //Function
 import { isEmpty } from "@/actions/common";
+import { GetNftCookieToken } from "@/actions/axios/nft.axios";
+import { GetUserCookieToken } from "@/actions/axios/user.axios";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const [activeLanguage, setActiveLanguage] = useState(languages[0]);
-
+  const navigate = useRouter();
   const accountData = useSelector((state)=>state.LoginReducer.AccountDetails)
   const userData = useSelector((state)=>state.LoginReducer.User.payload)
+  const dispatch = useDispatch();
   
+  const walletDisconnect = async () => {
+
+    localStorage.clear()
+    dispatch({
+        type: 'Account_Section',
+        Account_Section: {
+            AccountDetails: {
+                accountAddress: "",
+                tokenBalance: 0,
+                coinBalance: 0
+            }
+        }
+    })
+    navigate.push("/")
+    // window.location.reload();
+    document.cookie = 'token' + "=" + "" + ";" + ";path=/";
+    GetNftCookieToken();
+    GetUserCookieToken();
+}
 
   useEffect(() => {
     tippy("[data-tippy-content]");
@@ -138,6 +161,24 @@ console.log("userDataxxxxxx" , userData )
             Edit Profile
           </span>
         </Link>
+        <div
+         onClick={() => walletDisconnect()}
+          className="flex items-center space-x-2 rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            className="h-4 w-4 fill-jacarta-700 transition-colors dark:fill-white"
+          >
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M9.954 2.21a9.99 9.99 0 0 1 4.091-.002A3.993 3.993 0 0 0 16 5.07a3.993 3.993 0 0 0 3.457.261A9.99 9.99 0 0 1 21.5 8.876 3.993 3.993 0 0 0 20 12c0 1.264.586 2.391 1.502 3.124a10.043 10.043 0 0 1-2.046 3.543 3.993 3.993 0 0 0-3.456.261 3.993 3.993 0 0 0-1.954 2.86 9.99 9.99 0 0 1-4.091.004A3.993 3.993 0 0 0 8 18.927a3.993 3.993 0 0 0-3.457-.26A9.99 9.99 0 0 1 2.5 15.121 3.993 3.993 0 0 0 4 11.999a3.993 3.993 0 0 0-1.502-3.124 10.043 10.043 0 0 1 2.046-3.543A3.993 3.993 0 0 0 8 5.071a3.993 3.993 0 0 0 1.954-2.86zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+          </svg>
+          <span className="mt-1 font-display text-sm text-jacarta-700 dark:text-white">
+            Disconnect
+          </span>
+        </div>
        
       </div>
     </div>

@@ -10,7 +10,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 //function
 import { findOwners } from "@/actions/axios/user.axios";
-import { Token_Info_Func } from "@/actions/axios/nft.axios";
+import { Activitiesapi, NFTTOTALLIKES_API, Token_Info_Func } from "@/actions/axios/nft.axios";
 import ImgAudVideo from "@/components/common/imgvdo";
 import Config from "@/Config/config";
 import { address_showing, isEmpty } from "@/actions/common";
@@ -26,9 +26,17 @@ import ReportModal from "@/components/modals/ReportModal";
 import ShareModal from "@/components/modals/ShareModal";
 import CancelBid from "@/components/modals/CancelBid";
 import AcceptBid from "@/components/modals/AcceptBid";
-import Cancel from '@/components/modals/cancel'
+import Cancel from "@/components/modals/cancel";
+import { LikeRef } from "@/components/common/LikeRef";
+import { toast } from "react-toastify";
+// import { useRouter } from 'next/router';
+
+
+
+
 
 export default function ItemDetails({ params }) {
+  // const router = useRouter();
   const Contract = params?.details[0];
   const Owner = params?.details[1];
   const Id = params?.details[2];
@@ -42,9 +50,12 @@ export default function ItemDetails({ params }) {
   const cancelbid = useRef(null);
   const share = useRef(null);
   const report = useRef(null);
+  const modelclose = useRef(null);
 
+  const [likes , SetLikes]= useState(0)
   const userDate = useSelector((state) => state.LoginReducer.User.payload);
   const [TabName, SetTabName] = useState("All");
+  const [TokenActivities, SetTokenActivities] = useState([]);
   const [Tokens, SetTokens] = useState({
     All: {
       loader: true,
@@ -67,14 +78,24 @@ export default function ItemDetails({ params }) {
   );
   var [moreprops, setMoreprops] = useState("");
   const [text, setText] = useState("");
-  var LikeForwardRef = useRef();
+  const LikeForwardRef = useRef(null);
   const [LikedTokenList, setLikedTokenList] = useState([]);
   const [likedisable, SetLikeDisable] = useState(true);
   const [btn, setbtn] = useState(false);
   const [Loader, setLoader] = useState(false);
   const [LoaderTab, setLoaderTab] = useState(false);
 
-  console.log("Tokens_Detail-->", Tokens_Detail,Tokens["All"]?.owner?.PutOnSaleType ,"Tokens_Detail?.ContractType",Tokens_Detail?.ContractType,"Tokens[TabName]?.myowner?.WalletAddress",Tokens[TabName]?.myowner,"Tokens[TabName]",Tokens[TabName]);
+  console.log(
+    "Tokens_Detail-->",
+    Tokens_Detail,
+    Tokens["All"]?.owner?.PutOnSaleType,
+    "Tokens_Detail?.ContractType",
+    Tokens_Detail?.ContractType,
+    "Tokens[TabName]?.myowner?.WalletAddress",
+    Tokens[TabName]?.myowner,
+    "Tokens[TabName]",
+    Tokens[TabName]
+  );
   console.log("Tokens_Detail-->", Tokens_Detail);
   useEffect(() => {
     setLoader(true);
@@ -85,7 +106,11 @@ export default function ItemDetails({ params }) {
       Tokens[TabName] = { page: 1, list: [], loader: false };
       SetTokens(Tokens);
       Explore(1, TabName);
-    } else setLoaderTab(false);
+    } else {setLoaderTab(false);}
+if(Id){
+  GETLIKES(Id)
+
+}
   }, [TabName, Contract, Owner, Id, accountAddress]);
   const findOwner = async () => {
     var Resp = await findOwners({
@@ -96,6 +121,7 @@ export default function ItemDetails({ params }) {
 
     if (Resp.success === "success") {
       // console.log("come ah");
+
       Explore();
     }
     //  else if (state?.data && Resp.success === "error") {
@@ -109,7 +135,37 @@ export default function ItemDetails({ params }) {
     else {
       Explore();
     }
+    Activities();
+
   };
+
+  const Activities = async () => {
+    console.log('userDatederailesss', userDate)
+    if(userDate?.WalletAddress){
+      var SendDATA = {
+        TabName: "TokenActivity",
+        limit: 30,
+        CustomUrl: userDate?.CustomUrl,
+        NFTOwner: userDate?.WalletAddress,
+        page: 1,
+        from: "Activity",
+        NFTid: Id,
+      };
+      console.log('Activitiesx' , SendDATA)
+
+      let Resp = await Activitiesapi(SendDATA);
+      console.log('ActivitiesxResp' , Resp)
+
+      if (Resp?.success == "success") {
+        SetTokenActivities(Resp?.data);
+      }
+  
+      console.log("sasfdf", Resp);
+    }
+   
+  };
+
+
   let renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       return <span>Auction Completed!</span>;
@@ -148,6 +204,13 @@ export default function ItemDetails({ params }) {
     }
   };
 
+
+
+  const GETLIKES = async  (nfttid) => {
+    const data = await NFTTOTALLIKES_API(nfttid);
+    console.log("NFTTOTALLIKES_API" , data);
+    SetLikes(data.totallikes)
+  }
   let formatTime = (time) => {
     return String(time).padStart(2, "0");
   };
@@ -176,23 +239,23 @@ export default function ItemDetails({ params }) {
         // dispatch(datas.currency)
         if (data == "Accept") {
           // (async () => {
-            // let Statu = await ContractCall.GetApproveStatus(
-            //   Tokens_Detail.ContractType == 721 ||
-            //     Tokens_Detail.ContractType == "721"
-            //     ? "Single"
-            //     : "Multiple",
-            //   Tokens_Detail.ContractAddress
-            // );
-            // if (Statu == false || Statu == "error") {
-            //   toast.warn("Need To Approve");
-            //   SetBtnData("open");
-            //   SetOpenPopup(data);
-            //   SetSendDet(item);
-            // } else {
-              SetBtnData("error");
-              SetOpenPopup(data);
-              SetSendDet(item);
-            // }
+          // let Statu = await ContractCall.GetApproveStatus(
+          //   Tokens_Detail.ContractType == 721 ||
+          //     Tokens_Detail.ContractType == "721"
+          //     ? "Single"
+          //     : "Multiple",
+          //   Tokens_Detail.ContractAddress
+          // );
+          // if (Statu == false || Statu == "error") {
+          //   toast.warn("Need To Approve");
+          //   SetBtnData("open");
+          //   SetOpenPopup(data);
+          //   SetSendDet(item);
+          // } else {
+          SetBtnData("error");
+          SetOpenPopup(data);
+          SetSendDet(item);
+          // }
           // })();
         } else {
           setText(text);
@@ -236,7 +299,7 @@ export default function ItemDetails({ params }) {
     console.log(
       "Owners List",
       // JSON.stringify(
-        Resp.token.data[0].Current_Owner
+      Resp.token.data[0].Current_Owner
       // )
     );
     let cur_owner = JSON.stringify(Resp.token.data[0].Current_Owner);
@@ -313,38 +376,50 @@ export default function ItemDetails({ params }) {
   const closePop = () => {
     SetOpenPopup("");
     setbtn(false);
+    if (OpenPopup != "") {
+      if (OpenPopup == "") modelclose.current.click();
+    }
   };
   const LikeAction = async () => {
-    if (accountAddress) {
-      if (likedisable) {
-        SetLikeDisable(false);
-        var check = await LikeForwardRef.current.hitLike(Tokens_Detail);
-        toast.success("you " + check + "d this token", {
-          autoClose: 500,
+    console.log('likeekekekekekek', likedisable , accountAddress , Tokens_Detail)
+    try{
+      if (accountAddress) {
+        if (likedisable) {
+          SetLikeDisable(false);
+          var check = await LikeForwardRef.current.hitLike(Tokens_Detail);
+          console.log("likeekekekekekekxxxxx" , check)
+          toast.success("you " + check + "d this token", {
+            autoClose: 500,
+            closeButton: true,
+            closeOnClick: true,
+          });
+          if (check == "like") {
+            // Tokens_Detail?.likecount
+  
+            SetTokens_Detail({
+              ...Tokens_Detail,
+              ...{ likecount: Tokens_Detail.likecount + 1 },
+            });
+          } else if (check == "unlike") {
+            SetTokens_Detail({
+              ...Tokens_Detail,
+              ...{ likecount: Tokens_Detail.likecount - 1 },
+            });
+          }
+        }
+      } else
+        toast.error("Connect Wallet", {
+          autoClose: 1000,
           closeButton: true,
           closeOnClick: true,
         });
-        if (check == "like") {
-          // Tokens_Detail?.likecount
+    }catch(e){
 
-          SetTokens_Detail({
-            ...Tokens_Detail,
-            ...{ likecount: Tokens_Detail.likecount + 1 },
-          });
-        } else if (check == "unlike") {
-          SetTokens_Detail({
-            ...Tokens_Detail,
-            ...{ likecount: Tokens_Detail.likecount - 1 },
-          });
-        }
-        SetLikeDisable(true);
-      }
-    } else
-      toast.error("Connect Wallet", {
-        autoClose: 1000,
-        closeButton: true,
-        closeOnClick: true,
-      });
+    }finally{
+      SetLikeDisable(true);
+
+    }
+ 
   };
 
   function LikeList(data) {
@@ -357,6 +432,15 @@ export default function ItemDetails({ params }) {
 
   return (
     <>
+     {
+        <LikeRef
+          ref={LikeForwardRef}
+          setLikedTokenList={setLikedTokenList}
+          LikeList={LikeList}
+        />
+      }
+
+
       <section className="relative pt-12 pb-24 lg:py-24">
         <picture className="pointer-events-none absolute inset-0 -z-10 dark:hidden">
           <Image
@@ -576,19 +660,41 @@ export default function ItemDetails({ params }) {
                     <span
                       className="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-0"
                       data-tippy-content="Favorite"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                        className="h-4 w-4 fill-jacarta-500 hover:fill-red dark:fill-jacarta-200 dark:hover:fill-red"
-                      >
-                        <path fill="none" d="M0 0H24V24H0z"></path>
-                        <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z"></path>
-                      </svg>
+                      onClick={ () => LikeAction()}
+                 >
+                      
+                      {(LikedTokenList?.some(
+                                (value) => value.NFTId === Tokens_Detail.NFTId
+                              ) ? (
+                                
+                                <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                className="h-4 w-4 fill-jacarta-500 fill-red dark:fill-jacarta-200 dark:hover:fill-red"
+                             >
+        
+                                <path fill="none" d="M0 0H24V24H0z"></path>
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z"></path>
+                              </svg>
+                              ) :    
+                                 <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                className="h-4 w-4 fill-jacarta-500 hover:fill-red dark:fill-jacarta-200 dark:hover:fill-red"
+                             >
+        
+                                <path fill="none" d="M0 0H24V24H0z"></path>
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z"></path>
+                              </svg>
+                                
+                                )}
+                  
                     </span>
-                    <span className="text-sm dark:text-jacarta-200">188</span>
+                    <span className="text-sm dark:text-jacarta-200">{(Tokens_Detail?.likecount > likes) ? Tokens_Detail?.likecount : likes   }</span>
                   </div>
 
                   {/* Actions */}
@@ -765,7 +871,12 @@ export default function ItemDetails({ params }) {
                       className="block text-accent"
                     >
                       <span className="text-sm font-bold">
-                        @{Tokens_Detail?.Creator_DisplayName ? Tokens_Detail?.Creator_DisplayName : address_showing(Tokens_Detail?.Creator_WalletAddress) }
+                        @
+                        {Tokens_Detail?.Creator_DisplayName
+                          ? Tokens_Detail?.Creator_DisplayName
+                          : address_showing(
+                              Tokens_Detail?.Creator_WalletAddress
+                            )}
                       </span>
                     </Link>
                   </div>
@@ -813,7 +924,11 @@ export default function ItemDetails({ params }) {
                     </span>
                     <Link href={`/user/6`} className="block text-accent">
                       <span className="text-sm font-bold">
-                        @{Tokens[TabName]?.owner?.DisplayName}
+                        @{Tokens_Detail?.Creator_DisplayName
+                          ? Tokens_Detail?.Creator_DisplayName
+                          : address_showing(
+                              Tokens_Detail?.Creator_WalletAddress
+                            )}
                       </span>
                     </Link>
                   </div>
@@ -949,8 +1064,7 @@ export default function ItemDetails({ params }) {
                     {isEmpty(InfoDetail) &&
                       (Tokens_Detail?.ContractType?.toString() === "721" ? (
                         Tokens[TabName]?.myowner?.WalletAddress ==
-                        accountAddress ?
-                         (
+                        accountAddress ? (
                           Tokens[TabName]?.myowner?.PutOnSaleType ==
                           "FixedPrice" ? (
                             <button
@@ -1010,8 +1124,7 @@ export default function ItemDetails({ params }) {
                           Tokens[TabName]?.owner?.WalletAddress !=
                             accountAddress &&
                           (Tokens[TabName]?.owner?.PutOnSaleType ==
-                          "FixedPrice" ?
-                           (
+                          "FixedPrice" ? (
                             <button
                               className="inline-block w-full rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all hover:bg-accent-dark"
                               disabled={btn}
@@ -1025,8 +1138,7 @@ export default function ItemDetails({ params }) {
                             >
                               Buy Now
                             </button>
-                          ) :
-                           (
+                          ) : (
                             Tokens[TabName]?.myBid?.WalletAddress ==
                               accountAddress && (
                               <button
@@ -1048,17 +1160,13 @@ export default function ItemDetails({ params }) {
                                 Cancel Bid
                               </button>
                             )
-                          )
+                          ))
                         )
-                        )
-                      ) : 
-                      Tokens[TabName]?.myowner?.WalletAddress ==
-                        Tokens[TabName]?.owner?.WalletAddress ? 
-                        (
+                      ) : Tokens[TabName]?.myowner?.WalletAddress ==
+                        Tokens[TabName]?.owner?.WalletAddress ? (
                         <>
                           {Tokens[TabName]?.myowner?.PutOnSaleType ==
-                            "FixedPrice" && 
-                            (
+                            "FixedPrice" && (
                             <button
                               className="inline-block w-full rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all mb-2 hover:bg-accent-dark"
                               disabled={btn}
@@ -1072,11 +1180,9 @@ export default function ItemDetails({ params }) {
                             >
                               Cancel Now
                             </button>
-                          )
-                          }
+                          )}
                           {Tokens[TabName]?.myBid?.WalletAddress ==
-                          accountAddress ? 
-                          (
+                          accountAddress ? (
                             <button
                               disabled={btn}
                               className="inline-block w-full rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all hover:bg-accent-dark"
@@ -1090,9 +1196,7 @@ export default function ItemDetails({ params }) {
                             >
                               Edit Bid
                             </button>
-                          ) 
-                          : 
-                          (
+                          ) : (
                             Tokens[TabName]?.myowner?.WalletAddress !=
                               Tokens[TabName]?.owner?.WalletAddress && (
                               <button
@@ -1103,14 +1207,10 @@ export default function ItemDetails({ params }) {
                                 Bid Now
                               </button>
                             )
-                          )
-                          }
+                          )}
                         </>
-                      ) 
-                      : 
-                      Tokens[TabName]?.owner?.PutOnSaleType ===
-                        "FixedPrice" ? 
-                        (
+                      ) : Tokens[TabName]?.owner?.PutOnSaleType ===
+                        "FixedPrice" ? (
                         <button
                           className="inline-block w-full rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all hover:bg-accent-dark"
                           disabled={btn}
@@ -1120,12 +1220,9 @@ export default function ItemDetails({ params }) {
                         >
                           Buy Now
                         </button>
-                      ) 
-                      :
-                       (
+                      ) : (
                         Tokens[TabName]?.myBid?.WalletAddress ==
-                          accountAddress && 
-                          (
+                          accountAddress && (
                           <button
                             className="inline-block w-full rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all hover:bg-accent-dark"
                             disabled={btn}
@@ -1140,9 +1237,7 @@ export default function ItemDetails({ params }) {
                             Cancel Bid
                           </button>
                         )
-                      )
-                      )
-                      }
+                      ))}
 
                     {/* {isEmpty(InfoDetail) &&
                       (Tokens_Detail?.ContractType?.toString() === "721" ? (
@@ -1297,7 +1392,7 @@ export default function ItemDetails({ params }) {
                       ))} */}
                   </div>
                 </div>
- 
+
                 {/* Button Sections */}
                 <a
                   href="#"
@@ -1362,45 +1457,51 @@ export default function ItemDetails({ params }) {
                 >
                   cancel
                 </a>
-
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  ref={modelclose}
+                ></button>
               </div>
               {/* end bid */}
             </div>
             {/* end details */}
           </div>
-          <AcceptBid 
-          closePop={closePop}
-          owner={Tokens[TabName]?.myowner}
-          bidder={SendDet}
-          OpenPopup={OpenPopup}
-          bid={SendDet}
-          approvestatus={BtnData}
-          item={{
-            NFTId: Tokens_Detail.NFTId,
-            NFTName: Tokens_Detail.NFTName,
-            ContractAddress: Tokens_Detail.ContractAddress,
-            ContractType: Tokens_Detail.ContractType,
-            NFTRoyalty: Tokens_Detail.NFTRoyalty,
-            NFTCreator: Tokens_Detail.NFTCreator,
-            CollectionNetwork: Tokens_Detail.CollectionNetwork,
-            Category: Tokens_Detail.Category,
-          }}
+          <AcceptBid
+            closePop={closePop}
+            owner={Tokens[TabName]?.myowner}
+            bidder={SendDet}
+            OpenPopup={OpenPopup}
+            bid={SendDet}
+            approvestatus={BtnData}
+            item={{
+              NFTId: Tokens_Detail.NFTId,
+              NFTName: Tokens_Detail.NFTName,
+              ContractAddress: Tokens_Detail.ContractAddress,
+              ContractType: Tokens_Detail.ContractType,
+              NFTRoyalty: Tokens_Detail.NFTRoyalty,
+              NFTCreator: Tokens_Detail.NFTCreator,
+              CollectionNetwork: Tokens_Detail.CollectionNetwork,
+              Category: Tokens_Detail.Category,
+            }}
           />
 
-          <Cancel 
-          OpenPopup={OpenPopup}
-          closePop={closePop}
-          owner={Tokens[TabName]?.myowner}
-          item={{
-            NFTId: Tokens_Detail.NFTId,
-            NFTName: Tokens_Detail.NFTName,
-            ContractAddress: Tokens_Detail.ContractAddress,
-            ContractType: Tokens_Detail.ContractType,
-            NFTRoyalty: Tokens_Detail.NFTRoyalty,
-            NFTCreator: Tokens_Detail.NFTCreator,
-            CollectionNetwork: Tokens_Detail.CollectionNetwork,
-            Category: Tokens_Detail.Category,
-          }}
+          <Cancel
+            OpenPopup={OpenPopup}
+            closePop={closePop}
+            owner={Tokens[TabName]?.myowner}
+            item={{
+              NFTId: Tokens_Detail.NFTId,
+              NFTName: Tokens_Detail.NFTName,
+              ContractAddress: Tokens_Detail.ContractAddress,
+              ContractType: Tokens_Detail.ContractType,
+              NFTRoyalty: Tokens_Detail.NFTRoyalty,
+              NFTCreator: Tokens_Detail.NFTCreator,
+              CollectionNetwork: Tokens_Detail.CollectionNetwork,
+              Category: Tokens_Detail.Category,
+            }}
           />
 
           <BidModal
@@ -1431,11 +1532,11 @@ export default function ItemDetails({ params }) {
               NFTCreator: Tokens_Detail.NFTCreator,
               CollectionNetwork: Tokens_Detail.CollectionNetwork,
               Category: Tokens_Detail.Category,
-              currentOwner : Tokens_Detail.Current_Owner?.[0]
+              currentOwner: Tokens_Detail.Current_Owner?.[0],
             }}
           />
           <PlaceOrder
-          closePop={closePop}
+            closePop={closePop}
             text={text}
             owner={SendDet}
             file={`${Config.IMG_URL}/nft/${Tokens_Detail.NFTCreator}/Compressed/NFT/${Tokens_Detail.CompressedFile}`}
@@ -1466,7 +1567,7 @@ export default function ItemDetails({ params }) {
               CoinName: Tokens[TabName]?.myowner?.CoinName,
               PutOnSaleType: "FixedPrice",
               PutOnSale: true,
-              NFTId : Tokens_Detail.NFTId
+              NFTId: Tokens_Detail.NFTId,
             }}
           />
           <ReportModal
@@ -1513,7 +1614,8 @@ export default function ItemDetails({ params }) {
            } 
            NFTId={isEmpty(InfoDetail) ? Tokens_Detail?.NFTId : InfoDetail?.NFTId}
            POPUPACTION={(data1,data2,data3)=>POPUPACTION(data1,data2,data3)}
-           />
+           TokenActivities={TokenActivities}
+         />
           {/* end tabs */}
         </div>
       </section>

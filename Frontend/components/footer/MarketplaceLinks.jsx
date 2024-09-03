@@ -1,16 +1,25 @@
-import { nftCategories } from "@/data/footerLinks";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function MarketplaceLinks() {
+  const { Categorys } = useSelector((state) => state.LoginReducer);
+console.log(Categorys , 'Categorysx')
+
+const [nftCategories , setCAtegorylist ] = useState(Categorys)
+useEffect(() => {
+  setCAtegorylist(Categorys)
+},[Categorys])
   return (
     <>
       {nftCategories.map((elm, i) => (
         <li key={i}>
           <Link
-            href={elm.href}
+            href={`/collections/${elm.value}`}
             className="hover:text-accent dark:hover:text-white"
           >
-            {elm.name}
+            {elm.label}
           </Link>
         </li>
       ))}

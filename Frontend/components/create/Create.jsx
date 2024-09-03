@@ -756,9 +756,6 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
           closeButton: true,
           closeOnClick: true,
         });
-
-        
-
         modelClose()
         push(`/user/${userPayload?.CustomUrl}`, { state: { Tab: "owned" } });
       } else {
@@ -1173,12 +1170,12 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
               Properties
             </label>
             <div className="d-flex align-items-center justify-content-between tab-details">
-              <ul class="properties">
+              <ul class="properties createflex">
                 {number.map((val, index) => (
                   <>
                     {" "}
                     {number.length - 2 >= index && (
-                      <li>
+                      <li className="addsize">
                         <svg
                           width="12"
                           height="14"
@@ -1192,16 +1189,16 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
                           ></path>
                         </svg>
                         {key[index]} : {Value[index]}
-                        <span onClick={() => RemoveProperties(index)}>
+                        <span onClick={() => RemoveProperties(index)} className="cursor">
                           <svg
                             width="0"
                             height="0"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
-                            strokeWidth={1.5}
+                            strokeWidth={3}
                             stroke="currentColor"
-                            className="size-6"
+                            className="size-6 widthsvg"
                           >
                             <path
                               strokeLinecap="round"
@@ -1233,7 +1230,7 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
                 onChange={(e) => Properties(e)}
               />
               <button
-                className="cursor-default rounded-full bg-accent-lighter py-3 px-8 text-center font-semibold text-white transition-all w-[150px] hover:cursor-pointer"
+                className="cursor-default rounded-full bg-accent-lighter addbtn py-3 px-8 text-center font-semibold text-white transition-all w-[150px] hover:cursor-pointer"
                 onClick={AddProperties}
               >
                 Add More
@@ -1244,7 +1241,7 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
           {/* Submit */}
           <button
             onClick={FormSubmit}
-            className="cursor-default rounded-full bg-accent-lighter py-3 px-8 text-center font-semibold text-white transition-all hover:cursor-pointer"
+            className="cursor-default rounded-full bg-accent-lighter addbtn py-3 px-8 text-center font-semibold text-white transition-all hover:cursor-pointer"
           >
             Create
           </button>

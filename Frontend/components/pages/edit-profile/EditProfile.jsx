@@ -174,7 +174,7 @@ export default function EditProfile({params}) {
                 ? Resp.data?.isAdmin == "Yes"
                   ? true
                   : false
-                : isAdmin,
+                : false,
               token: Resp.token ? Resp.token : token,
             },
           },

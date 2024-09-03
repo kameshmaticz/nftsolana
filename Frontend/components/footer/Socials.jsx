@@ -19,20 +19,6 @@ export default function Socials() {
     <>
       {link.map((elm, i) => (
         <a key={i} href={elm.link}  className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent dark:border-jacarta-600 dark:bg-jacarta-700 dark:hover:bg-accent" target="blank">
-          {/* <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fab"
-            data-icon={elm.icon}
-            // data-icon={`${config.IMG_URL}/socialimg/${elm?.img}`}
-
-            className="h-5 w-5 fill-jacarta-300 group-hover:fill-accent dark:group-hover:fill-white"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox={elm.icon == "discord" ? "0 0 640 512" : "0 0 512 512"}
-          >
-            <path d={elm.svgPath}></path>
-          </svg> */}
           <Image
             width={350}
             height={250}

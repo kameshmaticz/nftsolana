@@ -16,7 +16,10 @@ export default function HomePage1() {
       <main>
         <Hero />
         <Hotbids />
-        <Topnft />
+        {/*TODO : Topnft is ->  HOT AUCTION */}
+        {/* <Topnft /> */}
+        
+        
         <Categories />
         <Process />
       </main>

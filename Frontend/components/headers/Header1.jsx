@@ -11,21 +11,15 @@ import { handleDarkMode } from "@/utlis/handleDarkMode";
 import Image from "next/image";
 import Link from "next/link";
 import MetamarkComponent from "../metamask/MetamarkComponent";
-
+import Config from '../../Config/config'
 //npm
-import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import {
 //   WalletDisconnectButton,
-//   WalletMultiButton 
+//   WalletMultiButton
 // } from "@solana/wallet-adapter-react-ui";
 
 import dynamic from "next/dynamic";
-
-
-const ReactUIWalletMultiButtonDynamic = dynamic(
-  async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
-  { ssr: false }
-);
 
 //Functions
 import { connectWallet } from "@/utlis/hooks/useWallet";
@@ -35,15 +29,17 @@ import { GetNftCookieToken, SearchAction } from "@/actions/axios/nft.axios";
 import { Category, Currency } from "@/actions/axios/cms.axios";
 
 export default function Header1() {
-  const wallet = useRef()
+  const wallet = useRef();
   const [Searchdata, SetSearch] = useState(null);
-  const [searchbottom,setSearchBottom] = useState(false)
+  const [searchbottom, setSearchBottom] = useState(false);
   const [val, Setval] = useState("");
-  const dispatch = useDispatch()
-  const UserPayload = useSelector((state)=>state.LoginReducer.User.payload)
-  const {web3,accountAddress,coinBalance} = useSelector((state)=>state.LoginReducer.AccountDetails)
+  const dispatch = useDispatch();
+  const UserPayload = useSelector((state) => state.LoginReducer.User.payload);
+  const { web3, accountAddress, coinBalance } = useSelector(
+    (state) => state.LoginReducer.AccountDetails
+  );
 
-// console.log('UserPayload-->',UserPayload)
+  // console.log('UserPayload-->',UserPayload)
   useEffect(() => {
     addMobileMenuToggle();
     return () => {
@@ -66,167 +62,168 @@ export default function Header1() {
     };
   }, []);
 
-  useEffect(()=>{
-    console.log('!isEmpty(localStorage.getItem("walletConnectType"))-->',!isEmpty(localStorage.getItem("walletConnectType")),isEmpty(UserPayload))
+  useEffect(() => {
+    console.log(
+      '!isEmpty(localStorage.getItem("walletConnectType"))-->',
+      !isEmpty(localStorage.getItem("walletConnectType")),
+      isEmpty(UserPayload)
+    );
     if (
       !isEmpty(localStorage.getItem("walletConnectType")) &&
-      isEmpty(UserPayload) 
+      isEmpty(UserPayload)
     ) {
       initialConnectWallet(localStorage.getItem("walletConnectType"));
     }
-    getCategory()
-    CurrencyList()
-  },[])
+    getCategory();
+    CurrencyList();
+  }, []);
 
- useEffect(()=>{
-    console.log("web3web3web3",web3)
- },[web3])
-
-
-
+  useEffect(() => {
+    console.log("web3web3web3", web3);
+  }, [web3]);
 
   const OnChange = async (value) => {
     // console.log("vallllllllllll",value);
     if (value) {
-        Setval(value);
-        var Resp = await SearchAction({
-
-            keyword: value,
-            limit: 3,
-            page: 1,
-            from: "search",
-        });
-        // console.log("response", Resp);
-        if (Resp?.success === "success") {
-            SetSearch(Resp);
-        }
-        else {
-            SetSearch(null)
-        }
-    }
-    else {
-        SetSearch(null)
-        Setval('')
-    }
-};
-    // Connect Wallet function 
-    const initialConnectWallet = async (type,title) => {
-      // const id=toast.loading( type+"Connecting")
-          var accountDetails = await connectWallet(type)
-          if (!isEmpty(accountDetails)) {
-              var resp = await setWalletAddress('InitialConnect', accountDetails?.accountAddress, type)
-              console.log("resp",resp)
-              // setAccDetail(accountDetails)
-              if (resp?.success === 'success') {
-                  // toast.update(id, { render: resp.msg, type: resp.success, autoClose: 1000, isLoading: false, closeButton: true, closeOnClick: true })
-                  dispatch({
-                      type: "Account_Section",
-                      Account_Section: { AccountDetails: accountDetails }
-                  })
-              }
-          }
-          // else 
-          // toast.update(id, { render: `${type} wallet not recognised`,  type: 'error', autoClose: 1000, isLoading: false})
-  }
-  const setWalletAddress = async (type, walletAddress, walletType) => {
-      if (walletAddress) {
-          var NewMethod = {
-              Type: type,
-              WalletAddress: walletAddress,
-              WalletType: walletType,
-          };
-          let Resp = await userRegister(NewMethod);
-          console.log('Resp-->',Resp)
-              if (Resp?.success == 'success') {
-                dispatch({
-                      type: 'Register_Section',
-                      Register_Section: {
-                          User: {
-                              payload: Resp.data,
-                              token: Resp.token ? Resp.token : token
-                          }
-                      }
-                  })
-                  document.cookie = 'token' + "=" + Resp?.token + ";" + ";path=/";
-                  GetNftCookieToken();
-                  GetUserCookieToken();
-                  return Resp
-              }
-              else return Resp
+      Setval(value);
+      var Resp = await SearchAction({
+        keyword: value,
+        limit: 3,
+        page: 1,
+        from: "search",
+      });
+      // console.log("response", Resp);
+      if (Resp?.success === "success") {
+        SetSearch(Resp);
+      } else {
+        SetSearch(null);
       }
-      else return { success: 'error', msg: 'No Address Detected.. Check Your Wallet' }
-
-  }
+    } else {
+      SetSearch(null);
+      Setval("");
+    }
+  };
+  // Connect Wallet function
+  const initialConnectWallet = async (type, title) => {
+    // const id=toast.loading( type+"Connecting")
+    var accountDetails = await connectWallet(type);
+    if (!isEmpty(accountDetails)) {
+      var resp = await setWalletAddress(
+        "InitialConnect",
+        accountDetails?.accountAddress,
+        type
+      );
+      console.log("resp", resp);
+      // setAccDetail(accountDetails)
+      if (resp?.success === "success") {
+        // toast.update(id, { render: resp.msg, type: resp.success, autoClose: 1000, isLoading: false, closeButton: true, closeOnClick: true })
+        dispatch({
+          type: "Account_Section",
+          Account_Section: { AccountDetails: accountDetails },
+        });
+      }
+    }
+    // else
+    // toast.update(id, { render: `${type} wallet not recognised`,  type: 'error', autoClose: 1000, isLoading: false})
+  };
+  const setWalletAddress = async (type, walletAddress, walletType) => {
+    if (walletAddress) {
+      var NewMethod = {
+        Type: type,
+        WalletAddress: walletAddress,
+        WalletType: walletType,
+      };
+      let Resp = await userRegister(NewMethod);
+      console.log("Resp-->", Resp);
+      if (Resp?.success == "success") {
+        dispatch({
+          type: "Register_Section",
+          Register_Section: {
+            User: {
+              payload: Resp.data,
+              token: Resp.token ? Resp.token : token,
+            },
+          },
+        });
+        document.cookie = "token" + "=" + Resp?.token + ";" + ";path=/";
+        GetNftCookieToken();
+        GetUserCookieToken();
+        return Resp;
+      } else return Resp;
+    } else
+      return {
+        success: "error",
+        msg: "No Address Detected.. Check Your Wallet",
+      };
+  };
 
   const getCategory = async () => {
     let Resp = await Category();
-    console.log('RespCategory-->',Resp)
+    console.log("RespCategory-->", Resp);
     if (Resp?.data) {
-        var sendda = [];
-        var data = (Resp.data || []).map((item) => {
-
-            if (item.hideShow !== "hidden") {
-                sendda.push({
-                    label: item.name,
-                    value: item.name,
-                    description: item.description,
-                });
-            }
-
-        });
-        console.log('sendda-->',sendda)
-        dispatch({
-            type: "Register_Section",
-            Register_Section: {
-                Categorys: sendda,
-            },
-        });
+      var sendda = [];
+      var data = (Resp.data || []).map((item) => {
+        if (item.hideShow !== "hidden") {
+          sendda.push({
+            label: item.name,
+            value: item.name,
+            description: item.description,
+          });
+        }
+      });
+      console.log("sendda-->", sendda);
+      dispatch({
+        type: "Register_Section",
+        Register_Section: {
+          Categorys: sendda,
+        },
+      });
     }
-};
+  };
 
-const Search = () => {
-  if (window.location.pathname.includes('search')) {
-      SetSearch(null)
-      Setval('')
-  }
+  const Search = () => {
+    if (window.location.pathname.includes("search")) {
+      SetSearch(null);
+      Setval("");
+    }
+  };
 
-}
-
-const CurrencyList = async () => {
+  const CurrencyList = async () => {
     let Resp = await Currency();
     console.log("Resp@123currency", Resp?.msg);
     if (Resp?.msg) {
-        var sen = [];
-        var CURRECYDATA = await Promise.all(
-            Resp?.msg[0]?.CurrencyDetails ||
-            []?.map(async (data) => {
-                if (data.label == "BNB" || data.label == "ETH")
-                    var USD = await USDPRICE(data.label);
-                else var USD = await TOKENPRICE(data.address);
-                sen.push({
-                    value: data.value,
-                    label: data.label,
-                    address: data.address,
-                    usd: USD ? USD : 0,
-                    decimal: data.decimal,
-                });
-            })
-        );
-     
-        dispatch({
-            type: "Register_Section",
-            Register_Section: {
-                currency:  CURRECYDATA,
-            },
-        });
+      var sen = [];
+      var CURRECYDATA = await Promise.all(
+        Resp?.msg[0]?.CurrencyDetails ||
+          []?.map(async (data) => {
+            if (data.label == "BNB" || data.label == "ETH")
+              var USD = await USDPRICE(data.label);
+            else var USD = await TOKENPRICE(data.address);
+            sen.push({
+              value: data.value,
+              label: data.label,
+              address: data.address,
+              usd: USD ? USD : 0,
+              decimal: data.decimal,
+            });
+          })
+      );
+
+      dispatch({
+        type: "Register_Section",
+        Register_Section: {
+          currency: CURRECYDATA,
+        },
+      });
     }
-};
+  };
 
   return (
     <>
       <header
-        className={`js-page-header fixed top-0 z-20 w-full backdrop-blur transition-colors ${scrolled ? "js-page-header--is-sticky" : ""
-          }`}
+        className={`js-page-header fixed top-0 z-20 w-full backdrop-blur transition-colors ${
+          scrolled ? "js-page-header--is-sticky" : ""
+        }`}
       >
         <div className="flex items-center px-6 py-6 xl:px-24 ">
           {/* Logo */}
@@ -256,8 +253,11 @@ const CurrencyList = async () => {
               type="search"
               className="w-full rounded-2xl border border-jacarta-100 py-[0.6875rem] px-4 pl-10 text-jacarta-700 placeholder-jacarta-500 focus:ring-accent dark:border-transparent dark:bg-white/[.15] dark:text-white dark:placeholder-white"
               placeholder="Search"
-              onChange={(e) => {OnChange(e.target.value);setSearchBottom(true)}}
-          />
+              onChange={(e) => {
+                OnChange(e.target.value);
+                setSearchBottom(true);
+              }}
+            />
             <span className="absolute left-0 top-0 flex h-full w-12 items-center justify-center rounded-2xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -272,106 +272,118 @@ const CurrencyList = async () => {
             </span>
           </form>
 
-{/* {seach resuly} */}
-<div className={searchbottom && searchbottom ? "search-model" : "search-model kr_align"}>
-                                                        {val && (
-                                                            <div className="contentTop">
-                                                                {Searchdata?.token?.data?.length > 0 ||
-                                                                    Searchdata?.user?.msg?.length > 0 || Searchdata?.collection?.msg?.length > 0 ? (<>
-                                                                        {Searchdata?.collection?.data?.length > 0 && (
-                                                                            <div className="content">
-                                                                                {/* <h6>Collections</h6> */}
-                                                                                {Searchdata?.collection?.data?.map(
-                                                                                    (value) => (<>
-                                                                          
-                                                                                    </>
-                                                                                    )
-                                                                                )}
-                                                                            </div>
-                                                                        )}
+          {/* {seach resuly} */}
+          <div
+            className={
+              searchbottom && searchbottom
+                ? "search-model"
+                : "search-model kr_align"
+            }
+          >
+            {val && (
+              <div className="contentTop chatset">
+                {Searchdata?.token?.data?.length > 0 ||
+                Searchdata?.user?.msg?.length > 0 ||
+                Searchdata?.collection?.msg?.length > 0 ? (
+                  // <></>
+                  <>
+                    {/* {Searchdata?.collection?.data?.length > 0 && (
+                      <div className="content">
+                        <h6>Collections</h6>
+                        {Searchdata?.collection?.data?.map((value) => (
+                          <></>
+                        ))}
+                      </div>
+                    )} */}
+                    {console.log("Searchdata.user?.msg", Searchdata.user?.msg)}
+                    {Searchdata.user?.msg?.length > 0 && (
+                      <div className="content">
+                        <h6 className="pTag fw-600">Users</h6>
+                        {Searchdata.user?.msg.map((value) => (
+                          <>
+                            <div
+                              className="searchset justify-content-start pt-4 searchCursor"
+                              onClick={() => {
+                                Setval("");
+                                push(`/profile/${value.CustomUrl}`);
+                              }}
+                            >
+                              <div className="">
+                                <img
+                                  src={
+                                    value.Profile
+                                      ? `${Config.IMG_URL}/user/${value.WalletAddress}/profile/${value.Profile}`
+                                      : Config.profile
+                                  }
+                                  className="img"
+                                />
+                              </div>
+                              <div className="ml-3">
+                                <div>{value.DisplayName}</div>
+                                <span></span>
+                              </div>
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    )}
+                    {console.log(
+                      "Searchdata.token?.data",
+                      Searchdata.token?.data
+                    )}
+                    {Searchdata.token?.data?.length > 0 && (
+                      <div className="content">
+                        <h6 className="pTag fw-600">Tokens</h6>
+                        {Searchdata.token?.data.map((value) => (
+                          <>
+                            <div
+                              className="searchset pt-4 searchCursor"
+                              onClick={() => {
+                                Setval("");
+                                SetSearch();
+                                push(
+                                  `/info/${value.ContractAddress}/${value.NFTOwner}/${value.NFTId}`
+                                );
+                              }}
+                            >
+                              <div className="">
+                                <img
+                                  src={
+                                    value.CompressedFile.includes(".webp") ||
+                                    value.CompressedFile.includes(".png")
+                                      ? value.CompressedFile
+                                        && `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT/${value.CompressedFile}`
+                                      : `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT_THUMB/${value.CompressedThumbFile}`
+                                  }
+                                  alt="Search"
+                                  className="img-fluid"
+                                />
+                              </div>
+                              <div className="ml-3">
+                                <div className="pTag">{value.NFTName}</div>
+                                <span></span>
+                              </div>
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    )}
+                    {/* <div className="tf-buton search-button my-5 d-flex justify-content-center">
+                      <Link href={`/search/${val}`} onClick={Search}>
+                        Search
+                      </Link>
+                    </div> */}
+                  </>
+                ) : val === "" ? (
+                  <></>
+                ) : (
+                  <span className="error_msg emsg pTag">No data Found</span>
+                )}
+              </div>
+            )}
+          </div>
 
-                                                                        {Searchdata.user?.msg?.length > 0 && (
-
-                                                                            <div className="content">
-                                                                                <h6>Users</h6>
-                                                                                {Searchdata.user?.msg.map(
-                                                                                    (value) => (
-                                                                                        <>
-                                                                                            <div className="d-flex align-items-center justify-content-start pt-4 searchCursor"
-                                                                                                onClick={() => {
-                                                                                                    Setval("");
-                                                                                                    push(
-                                                                                                        `/profile/${value.CustomUrl}`
-                                                                                                    );
-                                                                                                }}
-                                                                                            >
-                                                                                                <div className="">
-                                                                                                    <img
-                                                                                                        src={
-                                                                                                            value.Profile
-                                                                                                                ? `${Config.IMG_URL}/user/${value.WalletAddress}/profile/${value.Profile}`
-                                                                                                                :  Config.profile
-                                                                                                        }
-                                                                                                        className="img"
-                                                                                                    />
-                                                                                                </div>
-                                                                                                <div className="ml-3">
-                                                                                                    <div>
-                                                                                                        {value.DisplayName}
-                                                                                                    </div>
-                                                                                                    <span></span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </>
-                                                                                    )
-                                                                                )}
-                                                                            </div>
-                                                                        )}
-                                                                        {Searchdata.token?.data?.length > 0 && (
-                                                                            <div className="content">
-                                                                                <h6>Tokens</h6>
-                                                                                {Searchdata.token?.data.map(
-                                                                                    (value) => (<>
-                                                                                        <div className="d-flex align-items-center justify-content-start pt-4 searchCursor"
-                                                                                            onClick={() => {
-                                                                                                Setval("");
-                                                                                                SetSearch();
-                                                                                                push(
-                                                                                                    `/info/${value.CollectionNetwork}/${value.ContractAddress}/${value.NFTOwner}/${value.NFTId}`
-                                                                                                );
-                                                                                            }}
-                                                                                        >
-                                                                                            <div className="">
-
-                                                                                                <img src={value.CompressedFile.includes('.webp') || value.CompressedFile.includes('.png') ? value.CompressedFile.split(':')[0] == 'https' ? value.CompressedFile : `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT/${value.CompressedFile}` : `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT_THUMB/${value.CompressedThumbFile}`} alt="Search" className="img-fluid" />
-
-                                                                                            </div>
-                                                                                            <div className="ml-3">
-                                                                                            <div className="pTag" > T {value.NFTName}</div>
-                                                                                                <span></span>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </>
-                                                                                    )
-                                                                                )}
-                                                                            </div>
-
-                                                                        )}
-                                                                        <div className="tf-buton search-button my-5 d-flex justify-content-center">
-                                                                            {/* <Link to="/">Search</Link>                                                         */}
-                                                                            <Link to={`/search/${val}`} onClick={Search}>Search</Link>
-                                                                        </div>
-                                                                    </>) : (val === '' ? <></>
-                                                                        : <span className="error_msg">
-                                                                            No data Found
-                                                                        </span>
-                                                                )}
-                                                            </div>
-                                                        )}
-                                                    </div>
-
-{/* seach end result */}
+          {/* seach end result */}
           {/* Menu / Actions */}
           <div className="js-mobile-menu invisible lg:visible fixed inset-0 z-10 ml-auto rtl:mr-auto rtl:ml-0 items-center bg-white opacity-0 dark:bg-jacarta-800 lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent ">
             {/* Mobile Logo / Menu Close */}
@@ -421,9 +433,11 @@ const CurrencyList = async () => {
                 type="search"
                 className="w-full rounded-2xl border border-jacarta-100 py-3 px-4 pl-10 text-jacarta-700 placeholder-jacarta-500 focus:ring-accent dark:border-transparent dark:bg-white/[.15] dark:text-white dark:placeholder-white"
                 placeholder="Search"
-                onChange={(e) => {OnChange(e.target.value);setSearchBottom(true)}}
-             
-             />
+                onChange={(e) => {
+                  OnChange(e.target.value);
+                  setSearchBottom(true);
+                }}
+              />
               <span className="absolute left-0 top-0 flex h-full w-12 items-center justify-center rounded-2xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -436,17 +450,24 @@ const CurrencyList = async () => {
                   <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z" />
                 </svg>
               </span>
-              <div className={ searchbottom ? "search-model": "search-model kr_align"} >
-                                            {val && (
-                                                <div className="contentTop" id="smc-modal">
-                                                    {Searchdata?.token?.data?.length > 0 ||
-                                                        Searchdata?.user?.msg?.length > 0 || Searchdata?.collection?.msg?.length > 0 ? (<>
-                                                            {Searchdata?.collection?.data?.length > 0 && (
-                                                                <div className="content">
-                                                                    {/* <h6>Collections</h6> */}
-                                                                    {Searchdata?.collection?.data?.map(
-                                                                        (value) => (<>
-                                                                            {/* <div className="d-flex align-items-center justify-content-start pt-4 searchCursor" onClick={() => {
+              <div
+                className={
+                  searchbottom ? "search-model" : "search-model kr_align"
+                }
+              >
+                {console.log("Searchdata22222",Searchdata)}
+                {val && (
+                  <div className="contentTop" id="smc-modal">
+                    {Searchdata?.token?.data?.length > 0 ||
+                    Searchdata?.user?.msg?.length > 0 ||
+                    Searchdata?.collection?.msg?.length > 0 ? (
+                      <>
+                        {/* {Searchdata?.collection?.data?.length > 0 && (
+                          <div className="content">
+                            <h6>Collections</h6>
+                            {Searchdata?.collection?.data?.map((value) => (
+                              <>
+                                <div className="d-flex align-items-center justify-content-start pt-4 searchCursor" onClick={() => {
                                                                         Setval("");
                                                                       
                                                                     }}
@@ -466,92 +487,96 @@ const CurrencyList = async () => {
                                                                        
                                                                         
                                                                         </div>
-                                                                    </div> */}
-                                                                        </>
-                                                                        )
-                                                                    )}
-                                                                </div>
-                                                            )}
-                                                            {Searchdata.user?.msg?.length > 0 && (
+                                                                    </div>
+                              </>
+                            ))}
+                          </div>
+                        )} */}
+                        {Searchdata.user?.msg?.length > 0 && (
+                          <div className="content">
+                            <h6 className="pTag fw-600">Users</h6>
+                            {Searchdata.user?.msg.map((value) => (
+                              <>
+                                <div
+                                  className="searchset pt-4 searchCursor"
+                                  onClick={() => {
+                                    Setval("");
+                                    push(`/profile/${value.CustomUrl}`);
+                                  }}
+                                >
+                                  <div className="">
+                                    <img
+                                      src={
+                                        value.Profile
+                                          ? `${Config.IMG_URL}/user/${value.WalletAddress}/profile/${value.Profile}`
+                                          : Config.profile
+                                      }
+                                      className="img"
+                                    />
+                                  </div>
+                                  <div className="ml-3">
+                                    <div>{value.DisplayName}</div>
+                                    <span></span>
+                                  </div>
+                                </div>
+                              </>
+                            ))}
+                          </div>
+                        )}
 
-                                                                <div className="content">
-                                                                    <h6>Users</h6>
-                                                                    {Searchdata.user?.msg.map(
-                                                                        (value) => (
-                                                                            <>
-                                                                                <div className="d-flex align-items-center justify-content-start pt-4 searchCursor"
-                                                                                    onClick={() => {
-                                                                                        Setval("");
-                                                                                        push(
-                                                                                            `/profile/${value.CustomUrl}`
-                                                                                        );
-                                                                                    }}
-                                                                                >
-                                                                                    <div className="">
-                                                                                        <img
-                                                                                            src={
-                                                                                                value.Profile
-                                                                                                    ? `${Config.IMG_URL}/user/${value.WalletAddress}/profile/${value.Profile}`
-                                                                                                    : Config.profile
-                                                                                            }
-                                                                                            className="img"
-                                                                                        />
-                                                                                    </div>
-                                                                                    <div className="ml-3">
-                                                                                        <div>
-                                                                                            {value.DisplayName}
-                                                                                        </div>
-                                                                                        <span></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </>
-                                                                        )
-                                                                    )}
-                                                                </div>
-                                                            )}
-
-                                                            {Searchdata.token?.data?.length > 0 && (
-                                                                <div className="content">
-                                                                    <h6>Tokens</h6>
-                                                                    {Searchdata.token?.data.map(
-                                                                        (value) => (<>
-                                                                            <div className="d-flex align-items-center justify-content-start pt-4 searchCursor"
-                                                                                onClick={() => {
-                                                                                    Setval("");
-                                                                                    SetSearch();
-                                                                                    push(
-                                                                                        `/info/${value.CollectionNetwork}/${value.ContractAddress}/${value.NFTOwner}/${value.NFTId}`
-                                                                                    );
-                                                                                }}
-                                                                            >
-                                                                                <div className="">
-                                                                                    {console.log("COMPRESED", value.CompressedFile)}
-                                                                                    <img src={value.CompressedFile.includes('.webp') || value.CompressedFile.includes('.png') ? value.CompressedFile.split(':')[0] == 'https' ? value.CompressedFile : `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT/${value.CompressedFile}` : `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT_THUMB/${value.CompressedThumbFile}`} alt="Search" className="img-fluid" />
-                                                                                </div>
-                                                                                <div className="ml-3">
-                                                                                <div className="pTag" >   {value.NFTName}</div>
-                                                                                    <span></span>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </>
-                                                                        )
-                                                                    )}
-                                                                </div>
-
-                                                            )}
-                                                            <div className="tf-button search-button my-5 d-flex justify-content-center">
-                                                                <Link to={(`/search/${val}`)}>Search</Link>
-                                                                {/* <Link to="/">Search</Link> */}
-                                                            </div>
-                                                        </>) : (val === '' ? <></>
-                                                            : <span className="error_msg">
-                                                                No data Found
-                                                            </span>
-                                                    )}
-                                                </div>
-                                            )}
-                                            {/* <ul className="sub-menu d-block">
+                        {Searchdata.token?.data?.length > 0 && (
+                          <div className="content">
+                            <h6 className="pTag fw-600">Tokens</h6>
+                            {Searchdata.token?.data.map((value) => (
+                              <>
+                                <div
+                                  className="searchset pt-4 searchCursor"
+                                  onClick={() => {
+                                    Setval("");
+                                    SetSearch();
+                                    push(
+                                      `/info/${value.CollectionNetwork}/${value.ContractAddress}/${value.NFTOwner}/${value.NFTId}`
+                                    );
+                                  }}
+                                >
+                                  <div className="">
+                                    
+                                    <img
+                                      src={
+                                        value.CompressedFile.includes(
+                                          ".webp"
+                                        ) ||
+                                        value.CompressedFile.includes(".png")
+                                          ? value.CompressedFile.split(
+                                              ":"
+                                            )[0] == "https"
+                                            ? value.CompressedFile
+                                            : `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT/${value.CompressedFile}`
+                                          : `${Config.IMG_URL}/nft/${value.NFTCreator}/Compressed/NFT_THUMB/${value.CompressedThumbFile}`
+                                      }
+                                      alt="Search"
+                                      className="img-fluid"
+                                    />
+                                  </div>
+                                  <div className="ml-3">
+                                    <div className="pTag"> {value.NFTName}</div>
+                                    <span></span>
+                                  </div>
+                                </div>
+                              </>
+                            ))}
+                          </div>
+                        )}
+                        
+                      </>
+                    ) : val === "" ? (
+                      <></>
+                    ) : (
+                      <span className="error_msg emsg pTag">No data Found</span>
+                    )}
+                  </div>
+                )}
+                {/* <ul className="sub-menu d-block">
                                                 <li className="menu-item "><NavLink to="/explore">3D MODEL</NavLink></li>
                                                 <li className="menu-item"><NavLink to="/explore">ANIME/MANGA</NavLink></li>
                                                 <li className="menu-item"><NavLink to="/explore">CYBER PUNK</NavLink></li>
@@ -560,8 +585,7 @@ const CurrencyList = async () => {
                                                 <li className="menu-item"><NavLink to="/explore">2D ARTS</NavLink></li>
                                                 <div class="btn-slider "><NavLink class="tf-button style-2" href="/">Search<i class="far fa-long-arrow-right"></i></Link></div>
                                             </ul> */}
-                                        </div>
-
+              </div>
             </form>
 
             {/* Primary Nav */}
@@ -574,9 +598,9 @@ const CurrencyList = async () => {
             {/* Mobile Connect Wallet / Socials */}
             <div className="mt-10 w-full lg:hidden">
               {/* <MetamarkComponent> */}
-                <span className="  js-wallet block w-full rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all hover:bg-accent-dark">
-                  Connect Wallet
-                </span>
+              <span className="  js-wallet block w-full rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all hover:bg-accent-dark">
+                Connect Wallet
+              </span>
               {/* </MetamarkComponent> */}
 
               <hr className="my-5 h-px border-0 bg-jacarta-100 dark:bg-jacarta-600" />
@@ -657,72 +681,59 @@ const CurrencyList = async () => {
             </div>
 
             {/* Actions */}
-            
-            {console.log('accountAddressx' , accountAddress)}
-            {  <div className="ml-8  hidden lg:flex xl:ml-12">
-              {/* Wallet */}
-              {/* <MetamarkComponent> */}
-              {/* <div className="hidden"> */}
-                {/* <ReactUIWalletMultiButtonDynamic 
-                className=" cursor-pointer rtl:ml-2 js-wallet group flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent"
-                /> */}
-                {/* <WalletDisconnectButton  /> */}
-                {/* </div> */}
-              <div
-              // onClick={()=>wallet.current.click()}
-               data-bs-toggle="modal"
-                data-bs-target="#ConnectWalletModal" 
-                className=" cursor-pointer rtl:ml-2 js-wallet group flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent"
+
+            {
+              <div className="ml-8  hidden lg:flex xl:ml-12">
+                {!accountAddress && (
+                  <div
+                    data-bs-toggle="modal"
+                    data-bs-target="#ConnectWalletModal"
+                    className=" cursor-pointer rtl:ml-2 js-wallet group flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      className="h-4 w-4 fill-jacarta-700 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+                    >
+                      <path fill="none" d="M0 0h24v24H0z" />
+                      <path d="M22 6h-7a6 6 0 1 0 0 12h7v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2zm-7 2h8v8h-8a4 4 0 1 1 0-8zm0 3v2h3v-2h-3z" />
+                    </svg>
+                  </div>
+                )}
+
+                {/* Profile */}
+                {accountAddress && <Profile />}
+
+                {/* Dark Mode */}
+                <div
+                  onClick={() => handleDarkMode()}
+                  className="cursor-pointer  js-dark-mode-trigger  group ml-2 flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent"
                 >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  className="h-4 w-4 fill-jacarta-700 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path d="M22 6h-7a6 6 0 1 0 0 12h7v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2zm-7 2h8v8h-8a4 4 0 1 1 0-8zm0 3v2h3v-2h-3z" />
-                </svg>
-                {/* <ReactUIWalletMultiButtonDynamic 
-                className=" cursor-pointer rtl:ml-2 js-wallet group flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent"
-                /> */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    className="dark-mode-light h-4 w-4 fill-jacarta-700 transition-colors group-hover:fill-white group-focus:fill-white dark:hidden"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22 6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981z" />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    className="dark-mode-dark hidden h-4 w-4 fill-jacarta-700 transition-colors group-hover:fill-white group-focus:fill-white dark:block dark:fill-white"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z" />
+                  </svg>
+                </div>
               </div>
-              {/* </MetamarkComponent> */}
-
-              {/* Profile */}
-             {accountAddress &&   <Profile />}
-
-              {/* Dark Mode */}
-              <div
-                onClick={() => handleDarkMode()}
-                className="cursor-pointer  js-dark-mode-trigger  group ml-2 flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  className="dark-mode-light h-4 w-4 fill-jacarta-700 transition-colors group-hover:fill-white group-focus:fill-white dark:hidden"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22 6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981z" />
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  className="dark-mode-dark hidden h-4 w-4 fill-jacarta-700 transition-colors group-hover:fill-white group-focus:fill-white dark:block dark:fill-white"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z" />
-                </svg>
-              </div>
-            </div>}
-
-
-
+            }
           </div>
 
           {/* Mobile Menu Actions */}

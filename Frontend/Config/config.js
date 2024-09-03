@@ -84,7 +84,7 @@ else if (EnvName === "production") {
     key.BACK_URL = 'https://api.naifty.io/v1/front'
     key.ADMIN_URL = 'https://api.naifty.io/v1/admin'
     key.IMG_URL = 'https://api.naifty.io'
-    key.profile = profile
+    key.profile = "/img/avatars/owner_1.png"
     key.DEADADDRESS = '0x000000000000000000000000000000000000dEaD'.toLowerCase()
     key.TradeContract = '0xC9Cfa2dd1Ed7Bc29C7d9B990b2DE7Ee630478ec4'.toLowerCase()
     key.ERC721 = '0x99d344133e46720e286f9c5527d2cc2e304953d8'.toLowerCase()
@@ -130,11 +130,11 @@ else if (EnvName === "demossl") {
 }
 else {
     key.FRONT_URL = 'http://localhost:3000/'
-    key.BACK_URL = 'http://localhost:5001/v1/front'
-    key.ADMIN_URL = 'http://localhost:5001/v1/admin'
-    key.IMG_URL = 'http://localhost:5001'
+    key.BACK_URL = 'http://192.53.121.26:7017/v1/front/'
+    key.ADMIN_URL = 'http://192.53.121.26:7017/v1/admin'
+    key.IMG_URL = 'http://192.53.121.26:7017'
     key.DEADADDRESS = '0x000000000000000000000000000000000000dEaD'.toLowerCase()
-    // key.profile         =    profile
+    key.profile         =    "/img/avatars/owner_1.png"
     key.TradeContract = '0x600A3fEed87E3a2f9EFe61eAd7F1dAe8eA60a59d'.toLowerCase()
     // key.TradeContract   =   '0x3bE52bd3A97ac6Ba20F1482e58d9694B3E15Fb05'.toLowerCase()
     key.ERC721 = '0x9A9EBc3A48D9ddc54A2D6A3599642aBA4363E7e1'.toLowerCase()

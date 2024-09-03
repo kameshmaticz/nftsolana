@@ -160,7 +160,7 @@ type={
                 data-tippy-content={`Creator:${userPayload?.DisplayName}`}
               />
             </a>
-            <a href="#">
+            {/* <a href="#">
               <Image
                 width={20}
                 height={20}
@@ -173,7 +173,7 @@ type={
                 className="h-6 w-6 rounded-full border-2 border-white hover:border-accent dark:border-jacarta-600 dark:hover:border-accent"
                 data-tippy-content={`Owner : ${userPayload?.DisplayName}`}
               />
-            </a>
+            </a> */}
           </div>
         </div>
       </figure>
@@ -274,7 +274,7 @@ type={
                 data-tippy-content={`Creator:${userPayload?.DisplayName}`}
               />
             </a>
-            <a href="#">
+            {/* <a href="#">
               <Image
                 width={20}
                 height={20}
@@ -287,7 +287,7 @@ type={
                 className="h-6 w-6 rounded-full border-2 border-white hover:border-accent dark:border-jacarta-600 dark:hover:border-accent"
                 data-tippy-content={`Owner:${userPayload?.DisplayName}`}
               />
-            </a>
+            </a> */}
           </div>
         </div>
       </figure>
