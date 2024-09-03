@@ -125,7 +125,7 @@ export const connectWallet = async (type) => {
             let provider = walletAdapter
 
             const tokenBalance = await getTokenbalance(walletAdapter?.publicKey.toString())
-
+console.log("tokenBalance",tokenBalance)
             return { provider, add: walletAdapter?.publicKey.toString(), bal: (bal / LAMPORTS_PER_SOL) , tokenBalance :  tokenBalance.tokenBalance , decimal : tokenBalance.Decimal }
         } catch (error) {
             console.log("🚀 ~ solanaWal ~ error:", error)

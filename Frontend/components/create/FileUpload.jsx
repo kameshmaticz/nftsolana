@@ -75,13 +75,13 @@ export default function FileUpload({ onChange , userPayload , NFTFormValue}) {
       <label className="mb-2 block font-display text-jacarta-700 dark:text-white">
         Image, Video, Audio, or 3D Model<span className="text-red">*</span>
       </label>
-      <p className="mb-3 text-2xs dark:text-jacarta-300">
+      <div className="mb-3 text-2xs dark:text-jacarta-300">
         {!imageName ? (
           "Drag or choose your file to upload"
         ) : (
           <span className="text-green">Successfully Uploaded {imageName}</span>
         )}
-      </p>
+      </div>
       <div className="grid grid-cols-2 gap-3 flex-row flex-wrap flex max-[767px]:grid-cols-1 mb-4">
       <div
         onDragEnter={handleDragEnter}
@@ -106,10 +106,10 @@ export default function FileUpload({ onChange , userPayload , NFTFormValue}) {
             <path fill="none" d="M0 0h24v24H0z" />
             <path d="M16 13l6.964 4.062-2.973.85 2.125 3.681-1.732 1-2.125-3.68-2.223 2.15L16 13zm-2-7h2v2h5a1 1 0 0 1 1 1v4h-2v-3H10v10h4v2H9a1 1 0 0 1-1-1v-5H6v-2h2V9a1 1 0 0 1 1-1h5V6zM4 14v2H2v-2h2zm0-4v2H2v-2h2zm0-4v2H2V6h2zm0-4v2H2V2h2zm4 0v2H6V2h2zm4 0v2h-2V2h2zm4 0v2h-2V2h2z" />
           </svg>
-          <p className="mx-auto max-w-xs text-xs dark:text-jacarta-300">
+          <div className="mx-auto max-w-xs text-xs dark:text-jacarta-300">
             JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size:
             100 MB
-          </p>
+          </div>
         </div>
         <div className="absolute inset-4 cursor-pointer rounded bg-jacarta-50 opacity-0 group-hover:opacity-100 dark:bg-jacarta-600"></div>
         <div></div>
@@ -127,7 +127,7 @@ export default function FileUpload({ onChange , userPayload , NFTFormValue}) {
         />
       </div>
       <div>
-     <p>Item Preview</p>
+      <div className="pTag">Item Preview</div>
       
       <div className="block rounded-2.5xl w-[320px] border border-jacarta-100 bg-white p-[1.1875rem] transition-shadow hover:shadow-lg dark:border-jacarta-700 dark:bg-jacarta-700">
       <figure className="relative">
@@ -225,10 +225,10 @@ type={
             <path fill="none" d="M0 0h24v24H0z" />
             <path d="M16 13l6.964 4.062-2.973.85 2.125 3.681-1.732 1-2.125-3.68-2.223 2.15L16 13zm-2-7h2v2h5a1 1 0 0 1 1 1v4h-2v-3H10v10h4v2H9a1 1 0 0 1-1-1v-5H6v-2h2V9a1 1 0 0 1 1-1h5V6zM4 14v2H2v-2h2zm0-4v2H2v-2h2zm0-4v2H2V6h2zm0-4v2H2V2h2zm4 0v2H6V2h2zm4 0v2h-2V2h2zm4 0v2h-2V2h2z" />
           </svg>
-          <p className="mx-auto max-w-xs text-xs dark:text-jacarta-300">
+          <div className="mx-auto max-w-xs text-xs dark:text-jacarta-300">
             JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size:
             100 MB
-          </p>
+          </div>
         </div>
         <div className="absolute inset-4 cursor-pointer rounded bg-jacarta-50 opacity-0 group-hover:opacity-100 dark:bg-jacarta-600"></div>
         <div></div>
@@ -246,7 +246,7 @@ type={
         />
       </div>
       <div>
-      <p>Thumbnail Preview</p>
+      <div className="pTag" > Thumbnail Preview</div>
       <div className="block rounded-2.5xl w-[320px] border border-jacarta-100 bg-white p-[1.1875rem] transition-shadow hover:shadow-lg dark:border-jacarta-700 dark:bg-jacarta-700">
       <figure className="relative">
           <Image

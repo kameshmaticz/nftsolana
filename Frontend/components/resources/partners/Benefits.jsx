@@ -27,11 +27,11 @@ export default function Benefits() {
           <h1 className="mb-6 text-center font-display text-4xl font-medium text-jacarta-700 dark:text-white">
             NFT-Style Affiliate Partnership
           </h1>
-          <p className="mb-16 text-lg leading-normal dark:text-jacarta-200">
+          <div className="mb-16 text-lg leading-normal dark:text-jacarta-200">
             Interested in making money with NFT-Style? Earn A 20% Commission For
             Every Sale You Refer By Recommending The Most Powerful NFT
             marketplace.
-          </p>
+          </div>
         </div>
 
         <div className="grid gap-7 md:grid-cols-3">

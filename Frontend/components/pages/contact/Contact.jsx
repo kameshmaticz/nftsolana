@@ -149,9 +149,9 @@ export default function Contact() {
             <h2 className="mb-4 font-display text-xl text-jacarta-700 dark:text-white">
               Contact Us
             </h2>
-            <p className="mb-16 text-lg leading-normal dark:text-jacarta-300">
+            <div className="mb-16 text-lg leading-normal dark:text-jacarta-300">
               Have a question? Need help? Don't hesitate, drop us a line
-            </p>
+            </div>
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="flex space-x-7">
                 <div className="mb-6 w-1/2">

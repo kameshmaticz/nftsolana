@@ -93,8 +93,8 @@ export default function Story() {
             <div className="mb-8 text-lg leading-normal dark:text-jacarta-300">
               {/* Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam
-            </p>
-            <p className="mb-10 dark:text-jacarta-300">
+            </div>
+            <div className="mb-10 dark:text-jacarta-300">
               Every digital creation available through MakersPlace is an
               authentic and truly unique digital creation, signed and issued by
               the creator — made possible by blockchain technology. Even if the

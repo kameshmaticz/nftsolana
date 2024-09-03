@@ -130,9 +130,9 @@ export default function Profile({params}) {
             </button>
           </div>
 
-          <p className="mx-auto mb-2 max-w-xl text-lg dark:text-jacarta-300">
+          <div className="mx-auto mb-2 max-w-xl text-lg dark:text-jacarta-300">
            {userData?.Bio}
-          </p>
+          </div>
           <span className="text-jacarta-400">Joined {months[new Date(userData?.createdAt).getMonth()]} {new Date(userData?.createdAt).getFullYear()}</span>
 
           <div className="mt-6 flex items-center justify-center space-x-2.5">

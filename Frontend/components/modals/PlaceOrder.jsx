@@ -659,13 +659,13 @@ export default function PlaceOrder({
                     })
                   }
                 >
-                  <p
+                  <div
                     className={`dark:text-jacarta-300 text-center ${
                       FormValue?.PutOnSaleType === "FixedPrice" && "!text-white"
                     }`}
                   >
                     Fixed Price
-                  </p>
+                  </div>
                 </div>
                 {/* todo */}
                 {/* <div
@@ -691,7 +691,7 @@ export default function PlaceOrder({
                     }`}
                   >
                     Timed Auction
-                  </p>
+                  </div>
                 </div> */}
               </div>
               {FormValue?.PutOnSaleType === "FixedPrice" ? (
@@ -738,8 +738,8 @@ export default function PlaceOrder({
                       </div>
                     </div>
                   </div>
-                  <p className="dark:text-jacarta-300">Service Fees {String(0)}%</p>
-                  <p className="dark:text-jacarta-300">You will receive ETH</p>
+                  <div className="dark:text-jacarta-300">Service Fees {String(0)}%</div>
+                  <div className="dark:text-jacarta-300">You will receive ETH</div>
                 </div>
               ) : (
                 <div className="mb-4">

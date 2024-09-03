@@ -12,9 +12,9 @@ export default function Testimonials() {
           <h2 className="mb-6 text-center font-display text-3xl font-medium text-jacarta-700 dark:text-white">
             Satisfied Customers
           </h2>
-          <p className="text-lg dark:text-jacarta-300">
+          <div className="text-lg dark:text-jacarta-300">
             10,000k+ Customers those who already tried our services.
-          </p>
+          </div>
         </div>
         <Swiper
           modules={[Pagination, Autoplay]}
@@ -112,9 +112,9 @@ export default function Testimonials() {
                       <path d="M12 17l-5.878 3.59 1.598-6.7-5.23-4.48 6.865-.55L12 2.5l2.645 6.36 6.866.55-5.231 4.48 1.598 6.7z" />
                     </svg>
                   </div>
-                  <p className="text-md leading-normal text-jacarta-700 dark:text-white">
+                  <div className="text-md leading-normal text-jacarta-700 dark:text-white">
                     {elm.text}
-                  </p>
+                  </div>
                   <span className="mt-6 block font-display text-sm font-medium text-jacarta-700 dark:text-white">
                     {elm.name}
                   </span>

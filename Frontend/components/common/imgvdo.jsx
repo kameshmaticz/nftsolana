@@ -47,14 +47,14 @@ export default function ImgAudVideo({
       setCheck(!Check);
     }
   };
-  console.log("filessss", file);
+  console.log("filessss", type , file);
 
-  return file ? (
+  return type && file ? (
     type === "image" ? (
       <Image
         width={width ?? 230}
         height={height ?? 230}
-        src={isEmpty(file) ? "/img/products/item_5.jpg" : file}
+        src={isEmpty(file) ? "/img/products/item_5.jpg" : file ? file.includes('undefined') ?  "/img/products/item_5.jpg" :  file : "/img/products/item_5.jpg"}
         alt="item 5"
         className={classname ? classname : "w-full rounded-[0.625rem]"}
         loading="lazy"
@@ -123,7 +123,7 @@ export default function ImgAudVideo({
     <Image
       width={width ?? 230}
       height={height ?? 230}
-      src={isEmpty(file) ? "/img/products/item_5.jpg" : file}
+      src={isEmpty(file) ? "/img/products/item_5.jpg" : file ? file.includes('undefined') ?  "/img/products/item_5.jpg" :  file : "/img/products/item_5.jpg"}
       alt="item 5"
       className={classname ? classname :"w-full rounded-[0.625rem]"}
       loading="lazy"

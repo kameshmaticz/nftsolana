@@ -118,29 +118,29 @@ export default function ItemDetails({ params }) {
         <>
           <div className="d-flex justify-content-center">
             <div className="equal_divs_time">
-              <p className="dayy">{formatTime(days)} </p>
-              <p className="dayss">Days </p>
+              <div className="dayy">{formatTime(days)} </div>
+              <div className="dayss">Days </div>
             </div>
             <div className="equal_divs_time">
-              <p className="dayy">:</p>
+              <div className="dayy">:</div>
             </div>
             <div className=" equal_divs_time">
-              <p className="dayy">{formatTime(hours)}</p>
-              <p className="dayss">Hours </p>
+              <div className="dayy">{formatTime(hours)}</div>
+              <div className="dayss">Hours </div>
             </div>
             <div className="equal_divs_time">
-              <p className="dayy">:</p>
+              <div className="dayy">:</div>
             </div>
             <div className=" equal_divs_time">
-              <p className="dayy">{formatTime(minutes)}</p>
-              <p className="dayss">Minutes</p>
+              <div className="dayy">{formatTime(minutes)}</div>
+              <div className="dayss">Minutes</div>
             </div>
             <div className="equal_divs_time">
-              <p className="dayy">:</p>
+              <div className="dayy">:</div>
             </div>
             <div className=" equal_divs_time">
-              <p className="dayy"> {formatTime(seconds)}</p>
-              <p className="dayss">Seconds</p>
+              <div className="dayy"> {formatTime(seconds)}</div>
+              <div className="dayss">Seconds</div>
             </div>
           </div>
         </>
@@ -710,11 +710,11 @@ export default function ItemDetails({ params }) {
                 </span>
               </div>
 
-              <p className="mb-10 dark:text-jacarta-300">
+              <div className="mb-10 dark:text-jacarta-300">
                 {isEmpty(InfoDetail)
                   ? Tokens_Detail?.NFTDescription
                   : InfoDetail?.NFTDescription}
-              </p>
+              </div>
 
               {/* Creator / Owner */}
               <div className="mb-8 flex flex-wrap">

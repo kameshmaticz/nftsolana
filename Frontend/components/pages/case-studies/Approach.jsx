@@ -46,13 +46,13 @@ export default function Approach() {
             <h2 className="mb-6 font-display text-3xl text-jacarta-700 dark:text-white">
               Our Approach
             </h2>
-            <p className="mb-8 dark:text-jacarta-300">
+            <div className="mb-8 dark:text-jacarta-300">
               SEO was about achieving significant uplifts in rankings, traffic,
               and revenue. They were ambitious in becoming the market leader
               online for advertising agencies. To achieve their version of
               success we customised a 24 month campaign. The core strategy
               leveraged:
-            </p>
+            </div>
             <ul className="list-disc space-y-4 pl-4 dark:text-jacarta-300">
               <li>
                 Optimising the website and content structure to improve the SEO

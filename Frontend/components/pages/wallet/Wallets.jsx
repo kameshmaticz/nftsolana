@@ -31,7 +31,7 @@ export default function Wallets() {
               <h3 className="mb-3 font-display text-md text-jacarta-700 dark:text-white">
                 {elm.name}
               </h3>
-              <p className="dark:text-jacarta-300">{elm.description}</p>
+              <div className="dark:text-jacarta-300">{elm.description}</div>
             </a>
           ))}
         </div>

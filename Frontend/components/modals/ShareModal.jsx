@@ -83,9 +83,9 @@ export default function ShareModal({ title, url, from, closePop, quote }) {
                         <path stroke="none" d="M0 0h24v24H0z" />{" "}
                         <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
                       </svg>
-                      <p className="text-sm dark:text-jacarta-400 text-center">
+                      <div className="text-sm dark:text-jacarta-400 text-center">
                         Facebook
-                      </p>
+                      </div>
                     </FacebookShareButton>
                   </div>
                   <div className="flex justify-center flex-col items-center">
@@ -108,9 +108,9 @@ export default function ShareModal({ title, url, from, closePop, quote }) {
                         <path stroke="none" d="M0 0h24v24H0z" />{" "}
                         <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
                       </svg>
-                      <p className="text-sm dark:text-jacarta-400 text-center">
+                      <div className="text-sm dark:text-jacarta-400 text-center">
                         Telegram
-                      </p>
+                      </div>
                     </TelegramShareButton>
                   </div>
                   <div className="flex justify-center flex-col items-center">
@@ -133,9 +133,9 @@ export default function ShareModal({ title, url, from, closePop, quote }) {
                         <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
                         <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
                       </svg>
-                      <p className="text-sm dark:text-jacarta-400 text-center">
+                      <div className="text-sm dark:text-jacarta-400 text-center">
                         Twitter
-                      </p>
+                      </div>
                     </TwitterShareButton>
                   </div>
                 </div>

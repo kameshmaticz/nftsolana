@@ -546,8 +546,8 @@ const sortingOptions = [{key : "BLTH" ,  value : "Price Low to High" } , {key : 
                 <>
                   <div className="text-centre">
                     <h3>Loading...</h3>
-                    {/* {/ <p>Come back soon ! or try to browse something for you on our marketplace</p> /} */}
-                    {/* <p>Nothing for ReSale at this time</p> */}
+                    {/* {/   <div className="pTag" >Come back soon ! or try to browse something for you on our marketplace</div> /} */}
+                    {/*   <div className="pTag" >Nothing for ReSale at this time</div> */}
                     <div className="load-more">
                       {/* <Link to='/'><Button type="type" className="btn-load browse_marketplace" disableRipple>Browse Marketplace</Button></Link> */}
                     </div>

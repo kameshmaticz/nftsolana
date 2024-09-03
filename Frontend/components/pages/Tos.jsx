@@ -19,7 +19,7 @@ export default function Tos() {
         </h1>
         <div className="article-content mx-auto max-w-[48.125rem]">
           <h2 className="text-base">Introduction</h2>
-          <p>
+            <div className="pTag" >
             These Terms of Service (“Terms”) govern your access to and use of
             the NFT-Style website(s), our APIs, mobile app (the “App”), and any
             other software, tools, features, or functionalities provided on or
@@ -37,23 +37,23 @@ export default function Tos() {
             and warrant that (a) you are an authorized representative of the
             entity with the authority to bind the entity to these Terms, and (b)
             you agree to these Terms on the entity's behalf.
-          </p>
-          <p>
+          </div>
+            <div className="pTag" >
             PLEASE READ THESE TERMS OF SERVICE CAREFULLY AS THEY CONTAIN
             IMPORTANT INFORMATION AND AFFECT YOUR LEGAL RIGHTS. AS OUTLINED IN
             SECTION 16 BELOW, THEY INCLUDE A MANDATORY ARBITRATION AGREEMENT AND
             CLASS ACTION WAIVER WHICH (WITH LIMITED EXCEPTIONS) REQUIRE ANY
             DISPUTES BETWEEN US TO BE RESOLVED THROUGH INDIVIDUAL ARBITRATION
             RATHER THAN BY A JUDGE OR JURY IN COURT.
-          </p>
-          <p>
+          </div>
+            <div className="pTag" >
             BY CLICKING TO ACCEPT AND/OR USING OUR SERVICE, YOU AGREE TO BE
             BOUND BY THESE TERMS AND ALL OF THE TERMS INCORPORATED HEREIN BY
             REFERENCE. IF YOU DO NOT AGREE TO THESE TERMS, YOU MAY NOT ACCESS OR
             USE THE SERVICE.
-          </p>
+          </div>
 
-          <p>
+            <div className="pTag" >
             NFT-Style is not a wallet provider, exchange, broker, financial
             institution, or creditor. NFT-Style provides a peer-to-peer web3
             service that helps users discover and directly interact with each
@@ -62,9 +62,9 @@ export default function Tos() {
             with and we do not execute or effectuate purchases, transfers, or
             sales of NFTs. To use our Service, you must use a third-party wallet
             which allows you to engage in transactions on blockchains.
-          </p>
+          </div>
 
-          <p>
+            <div className="pTag" >
             Because we have a growing number of services, we sometimes need to
             provide additional terms for specific services (and such services
             are deemed part of the “Service” hereunder and shall also be subject
@@ -74,11 +74,11 @@ export default function Tos() {
             conflict between these Terms and any additional applicable terms we
             may provide for a specific service, such additional terms shall
             control for that specific service.
-          </p>
+          </div>
 
           <h2>Ownership</h2>
 
-          <p>
+            <div className="pTag" >
             The Service, including its “look and feel” (e.g., text, graphics,
             images, logos, page headers, button icons, and scripts), proprietary
             content, information and other materials, and all content and other
@@ -91,11 +91,11 @@ export default function Tos() {
             and our affiliates, licensors, and users, as applicable, reserve all
             rights in connection with the Service and its content, including,
             without limitation, the exclusive right to create derivative works.
-          </p>
+          </div>
 
           <h2>License to Access and Use Our Service and Content</h2>
 
-          <p>
+            <div className="pTag" >
             You are hereby granted a limited, nonexclusive, nontransferable,
             nonsublicensable, and personal license to access and use the Service
             provided, however, that such license is subject to your compliance
@@ -111,18 +111,18 @@ export default function Tos() {
             Terms, provided that your license in any content linked to or
             associated with any NFTs is solely as set forth by the applicable
             seller or creator of such NFT.
-          </p>
+          </div>
 
           <h2>Intellectual Property Rights</h2>
 
-          <p>
+            <div className="pTag" >
             You are solely responsible for your use of the Service and for any
             information you provide, including compliance with applicable laws,
             rules, and regulations, as well as these Terms, including the User
             Conduct requirements outlined above.
-          </p>
+          </div>
 
-          <p>
+            <div className="pTag" >
             By using the Service in conjunction with creating, submitting,
             posting, promoting, or displaying content, or by complying with
             OpenSea's metadata standards in your metadata API responses, you
@@ -135,11 +135,11 @@ export default function Tos() {
             promote, and improve the Service. This includes any digital file,
             art, or other material linked to or associated with any NFTs that
             are displayed on the Service.
-          </p>
+          </div>
 
           <h2>Miscellaneous</h2>
 
-          <p>
+            <div className="pTag" >
             These Terms constitute the entire agreement between you and NFT-Style
             relating to your access to and use of the Service. These Terms, and
             any rights and licenses granted hereunder, may not be transferred or
@@ -150,22 +150,22 @@ export default function Tos() {
             deemed to be a waiver of any preceding or subsequent breach or
             default. The section headings used herein are for reference only and
             shall not be read to have any legal effect.
-          </p>
+          </div>
 
-          <p>
+            <div className="pTag" >
             The Service is operated by us in the United States. Those who choose
             to access the Service from locations outside the United States do so
             at their own initiative and are responsible for compliance with
             applicable local laws. You and NFT-Style agree that the United
             Nations Convention on Contracts for the International Sale of Goods
             will not apply to the interpretation or construction of these Terms.
-          </p>
+          </div>
 
-          <p>
+            <div className="pTag" >
             Except as otherwise provided herein, these Terms are intended solely
             for the benefit of the parties and are not intended to confer
             third-party beneficiary rights upon any other person or entity.
-          </p>
+          </div>
         </div>
       </div>
     </section>

@@ -34,10 +34,10 @@ export default function LevelsModal() {
           </div>
 
           <div className="modal-body p-6">
-            <p className="mb-8 dark:text-jacarta-300">
+            <div className="mb-8 dark:text-jacarta-300">
               Levels show up underneath your item, are clickable, and can be
               filtered in your collection's sidebar.
-            </p>
+            </div>
 
             <div className="relative my-3 flex items-center">
               <button className="flex h-12 w-12 shrink-0 items-center justify-center self-end rounded-l-lg border border-r-0 border-jacarta-100 bg-jacarta-50 hover:bg-jacarta-100 dark:border-jacarta-600 dark:bg-jacarta-700">

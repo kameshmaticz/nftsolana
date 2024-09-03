@@ -8,11 +8,11 @@ export default function Process() {
           <h2 className="mb-6 text-center font-display text-3xl font-medium text-jacarta-700 dark:text-white">
             How Our Affiliate Program Works
           </h2>
-          <p className="dark:text-jacarta-300">
+          <div className="dark:text-jacarta-300">
             While we take pride in being the first and largest marketplace and
             in our robust feature set, we also help our partners succeed with
             the following...
-          </p>
+          </div>
         </div>
 
         <div className="grid gap-7 md:grid-cols-3">
@@ -37,7 +37,7 @@ export default function Process() {
               <h3 className="mb-4 font-display text-lg text-jacarta-700 dark:text-white">
                 {elm.title}
               </h3>
-              <p className="dark:text-jacarta-300">{elm.description}</p>
+              <div className="dark:text-jacarta-300">{elm.description}</div>
             </div>
           ))}
         </div>

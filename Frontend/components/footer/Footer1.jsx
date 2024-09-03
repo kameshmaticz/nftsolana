@@ -41,12 +41,12 @@ export default function Footer1() {
                 alt="NFT-Style | NFT Marketplace"
               />
             </Link>
-            <p className="mb-12 dark:text-jacarta-300">
+            <div className="mb-12 dark:text-jacarta-300">
               {/* Create, sell and collect truly rare digital artworks. Powered by
               blockchain technology. */}
               <div dangerouslySetInnerHTML={{__html:nftstylefooter?.answer}}></div>
              
-            </p>
+            </div>
 
             <div className="flex space-x-5">
               <Socials />

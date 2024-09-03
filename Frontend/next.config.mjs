@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost', 'example.com', 'anotherdomain.com','192.53.121.26:7017'],
+    domains: ['localhost', 'example.com', 'anotherdomain.com','192.53.121.26:7017' , 'backend-nftsolana.maticz.in'],
    
       remotePatterns: [
         {

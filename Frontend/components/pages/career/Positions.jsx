@@ -47,7 +47,7 @@ export default function Positions() {
               <span className="mb-4 block text-xs text-jacarta-400 dark:text-jacarta-300">
                 Experience – {elm.experience}
               </span>
-              <p className="mb-8 dark:text-jacarta-300"><div dangerouslySetInnerHTML={{__html:elm.description}}></div></p>
+              <div className="mb-8 dark:text-jacarta-300"><div dangerouslySetInnerHTML={{__html:elm.description}}></div></div>
               <Link href="/contact" className="text-sm font-bold text-accent">
                 Apply Now
               </Link>

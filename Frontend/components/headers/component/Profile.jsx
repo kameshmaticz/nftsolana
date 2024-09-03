@@ -22,7 +22,7 @@ export default function Profile() {
     tippy("[data-tippy-content]");
     new CopyToClipboard();
   }, []);
-
+console.log("userDataxxxxxx" , userData )
 
   return (
     <div className="js-nav-dropdown group-dropdown relative">
@@ -101,6 +101,7 @@ export default function Profile() {
             <span className="text-lg font-bold text-green">{accountData?.coinBalance?.toFixed(4)} SOL</span>
           </div>
         </div>
+
         <Link
           href={`/user/${userData?.CustomUrl}`}
           className="flex items-center space-x-2 rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600"

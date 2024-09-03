@@ -44,10 +44,10 @@ export default function Terms() {
             <h1 className="mb-6 text-center font-display text-4xl font-medium text-jacarta-700 dark:text-white">
               {termscondition?.description}
             </h1>
-            {/* <p className="text-lg leading-normal dark:text-jacarta-200">
+            {/* <div className="text-lg leading-normal dark:text-jacarta-200">
               Be part of our young and innovative team, and we build trust,
               embrace feedback, grow rapidly, and love our work.
-            </p> */}
+            </div> */}
           </div>
         </div>
       </section>

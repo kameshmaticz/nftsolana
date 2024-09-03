@@ -102,16 +102,16 @@ export default function Process() {
               >
                 {elm.heading}
               </h3>
-              <p className="dark:text-jacarta-300"><div dangerouslySetInnerHTML={{ __html: elm?.description }}></div></p>
+              <div className="dark:text-jacarta-300"><div dangerouslySetInnerHTML={{ __html: elm?.description }}></div></div>
             </div>
           ))}
         </div>
 
-        <p className="mx-auto mt-20 max-w-2xl text-center text-lg text-jacarta-700 dark:text-white">
+        <div className="mx-auto mt-20 max-w-2xl text-center text-lg text-jacarta-700 dark:text-white">
           {/* Join our mailing list to stay in the loop with our newest feature
           releases, NFT drops, and tips and tricks for navigating NFT-Style */}
           <div dangerouslySetInnerHTML={{ __html: subscriber?.answer }}></div>
-        </p>
+        </div>
 
         <div className="mx-auto mt-7 max-w-md text-center">
           <form onSubmit={(e) => e.preventDefault()} className="relative">

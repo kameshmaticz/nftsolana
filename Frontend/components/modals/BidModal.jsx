@@ -256,7 +256,7 @@ export default function BidModal({   bidder, bid, owner, item ,closePop }) {
                   <ul className="scrollbar-custom flex max-h-48 flex-col overflow-y-auto">
                     {currency.filter(s=>s.label != "SOL").map((elm, i) => (
                       <li key={i} id="CoinName" value={elm?.value} className="mb-4 px-2 hover:bg-accent-dark" onClick={(e) => onChange(e)}>
-                        <p className="text-600 hover:text-white">{elm.label}</p>
+                        <div className="text-600 hover:text-white">{elm.label}</div>
                       </li>
                     ))}
                   </ul>
@@ -291,20 +291,20 @@ export default function BidModal({   bidder, bid, owner, item ,closePop }) {
               
               <div>
                 <div className="flex justify-between flex-row w-100 mb-[5px]">
-                  <p className="text-sm font-semibold text-jacarta-600  dark:text-white">Your Balance:</p>
-                  <p className="text-sm font-normal text-jacarta-600  dark:text-accent-light">{coinBalance ?? 0} { Config.COIN_NAME}</p>
+                  <div className="text-sm font-semibold text-jacarta-600  dark:text-white">Your Balance:</div>
+                  <div className="text-sm font-normal text-jacarta-600  dark:text-accent-light">{coinBalance ?? 0} { Config.COIN_NAME}</div>
                 </div>
                 <div className="flex justify-between flex-row w-100 mb-[5px]">
-                  <p className="text-sm font-semibold text-jacarta-600  dark:text-white">Your Bidding balance:</p>
-                  <p className="text-sm font-normal text-jacarta-600  dark:text-accent-light">0 Cake</p>
+                  <div className="text-sm font-semibold text-jacarta-600  dark:text-white">Your Bidding balance:</div>
+                  <div className="text-sm font-normal text-jacarta-600  dark:text-accent-light">0 Cake</div>
                 </div>
                 <div className="flex justify-between flex-row w-100 mb-[5px]">
-                  <p className="text-sm font-semibold text-jacarta-600  dark:text-white">Service fee:</p>
-                  <p className="text-sm font-normal text-jacarta-600  dark:text-accent-light">2.5% Cake</p>
+                  <div className="text-sm font-semibold text-jacarta-600  dark:text-white">Service fee:</div>
+                  <div className="text-sm font-normal text-jacarta-600  dark:text-accent-light">2.5% Cake</div>
                 </div>
                 <div className="flex justify-between flex-row w-100 mb-[5px]">
-                  <p className="text-sm font-semibold text-jacarta-600  dark:text-white">You will Pay:</p>
-                  <p className="text-sm font-normal text-jacarta-600  dark:text-accent-light">0 Cake</p>
+                  <div className="text-sm font-semibold text-jacarta-600  dark:text-white">You will Pay:</div>
+                  <div className="text-sm font-normal text-jacarta-600  dark:text-accent-light">0 Cake</div>
                 </div>
               
               </div>

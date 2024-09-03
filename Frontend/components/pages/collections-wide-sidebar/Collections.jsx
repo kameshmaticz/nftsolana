@@ -59,9 +59,9 @@ export default function Collections() {
               <h1 className="pt-3 mb-2 font-display text-2xl font-medium text-jacarta-700 dark:text-white">
                 Explore Collections
               </h1>
-              <p className="dark:text-jacarta-400 font-medium text-2xs">
+              <div className="dark:text-jacarta-400 font-medium text-2xs">
                 156,893 items
-              </p>
+              </div>
             </div>
 
             <div className="tab-content">

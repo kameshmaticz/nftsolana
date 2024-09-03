@@ -279,7 +279,7 @@ export default function EditProfile({params}) {
                 value={userData?.EmailId}
                 onChange={onChange}
               />
-              {!isEmpty(err.EmailId) && <p className="text-red">{err.EmailId}</p>}
+              {!isEmpty(err.EmailId) && <div className="text-red">{err.EmailId}</div>}
             </div>
             <div className="mb-6">
               <label
@@ -421,10 +421,10 @@ export default function EditProfile({params}) {
               <span className="mb-3 block font-display text-sm text-jacarta-700 dark:text-white">
                 Profile Image
               </span>
-              <p className="text-sm leading-normal dark:text-jacarta-300">
+              <div className="text-sm leading-normal dark:text-jacarta-300">
                 We recommend an image of at least 300x300. Gifs work too. Max
                 5mb.
-              </p>
+              </div>
             </div>
           </div>
         </div>

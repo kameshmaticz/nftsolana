@@ -41,7 +41,7 @@ export default function Faq() {
             data-bs-parent="#accordionFAQ"
           >
             <div className="accordion-body border-t border-jacarta-100 bg-white p-4 dark:border-jacarta-600 dark:bg-jacarta-700">
-              <p className="dark:text-jacarta-200">{elm.answer}</p>
+              <div className="dark:text-jacarta-200">{elm.answer}</div>
             </div>
           </div>
         </div>

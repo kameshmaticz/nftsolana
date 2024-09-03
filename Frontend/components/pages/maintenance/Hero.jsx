@@ -14,9 +14,9 @@ export default function Hero() {
 
       <div className="container relative z-10 flex h-full items-center">
         <div className="mx-auto max-w-lg text-center">
-          <p className="mb-8 text-lg leading-normal text-white">
+          <div className="mb-8 text-lg leading-normal text-white">
             We will be back soon...
-          </p>
+          </div>
           <h1 className="mb-6 font-display text-4xl text-white md:text-6xl">
             Website Is Under Maintanance
           </h1>

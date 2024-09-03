@@ -50,8 +50,8 @@ key.NumberOnly = /[^0-9]/g
 // }
 if (EnvName === "demo") {
     key.FRONT_URL = 'http://nftdemo.bimaticz.com/naifty'
-    key.BACK_URL = 'https://backend-nftsolana.maticz.in'
-    key.ADMIN_URL = 'https://backend-nftsolana.maticz.in'
+    key.BACK_URL = 'https://backend-nftsolana.maticz.in/v1/front'
+    key.ADMIN_URL = 'https://backend-nftsolana.maticz.in/v1/admin'
     key.IMG_URL = 'https://backend-nftsolana.maticz.in'
     key.network = "devnet"
     key.IPFS = 'https://naifty.infura-ipfs.io/ipfs/'

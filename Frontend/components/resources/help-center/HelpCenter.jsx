@@ -31,7 +31,7 @@ export default function HelpCenter() {
               <h3 className="mb-2 font-display text-base font-semibold text-jacarta-700 dark:text-white">
                 {elm.title}
               </h3>
-              <p className="dark:text-jacarta-300">{elm.description}</p>
+              <div className="dark:text-jacarta-300">{elm.description}</div>
             </a>
           ))}
         </div>
@@ -39,13 +39,13 @@ export default function HelpCenter() {
         <h2 className="mb-10 text-center font-display text-xl font-medium text-jacarta-700 dark:text-white">
           Frequently asked questions
         </h2>
-        <p className="mx-auto mb-10 max-w-md text-center text-lg text-jacarta-300">
+        <div className="mx-auto mb-10 max-w-md text-center text-lg text-jacarta-300">
           Join our community now to get free updates and also alot of freebies
           are waiting for you or
           <Link href="/contact" className="text-accent">
             Contact Support
           </Link>
-        </p>
+        </div>
 
         <Faq />
       </div>

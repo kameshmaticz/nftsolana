@@ -24,21 +24,20 @@ import { useWallet } from "@solana/wallet-adapter-react";
 
 export default function ConnectWalletModal() {
 
-  const { select , wallets, publicKey, disconnect ,connected } = useWallet();
-console.log('wallets-->',wallets)
+  // const { select ,connected } = useWallet();
   const dispatch = useDispatch()
   const navigate = useRouter()
   const modelcloseref = useRef()
   const { token } = useSelector(state => state.LoginReducer.User)
 
-  useEffect(()=>{
-    select((val)=>{
-      console.log('select-->',val)
-      if(connected){
-        initialConnectWallet(val.toLowerCase())
-      }
-    })
-  },[connected])
+  // useEffect(()=>{
+  //   select((val)=>{
+  //     console.log('select-->',val)
+  //     if(connected){
+  //       initialConnectWallet(val.toLowerCase())
+  //     }
+  //   })
+  // },[connected])
 
   // States
   const [accDetail, setAccDetail] = useState({})
@@ -150,18 +149,18 @@ console.log('wallets-->',wallets)
            { <div className="flex items-center justify-evenly space-x-4">
               <div className="hover:cursor-pointer hover:opacity-75 flex flex-col items-center" onClick={()=>initialConnectWallet('solana')}>
               <Image width={80} height={80} src={solanaimg}alt="solana" />
-              <p className="font-display text-sm font-semibold text-jacarta-700 dark:text-white mt-[10px]">Solana Wallet</p>
+              <div className="font-display text-sm font-semibold text-jacarta-700 dark:text-white mt-[10px]">Solana Wallet</div>
               </div>
               <div className="hover:cursor-pointer hover:opacity-75 flex flex-col items-center" onClick={()=>initialConnectWallet('phantom')}>
               <Image width={80} height={80} src={phantom}alt="solana" />
-              <p className="font-display text-sm font-semibold text-jacarta-700 dark:text-white mt-[10px]">Phantom Wallet</p>
+              <div className="font-display text-sm font-semibold text-jacarta-700 dark:text-white mt-[10px]">Phantom Wallet</div>
               </div>
            
               </div>}
               <div className="flex items-center justify-evenly space-x-4 mt-[10px]">
               <div className="hover:cursor-pointer hover:opacity-75 flex flex-col items-center" onClick={()=>initialConnectWallet('math')}>
               <Image width={120} height={80} src={mathwallet} alt="math" className=" dark:invert" />
-              <p className="font-display text-sm font-semibold text-jacarta-700 dark:text-white mt-[10px]">Math Wallet</p>
+              <div className="font-display text-sm font-semibold text-jacarta-700 dark:text-white mt-[10px]">Math Wallet</div>
               </div>
               </div>
            

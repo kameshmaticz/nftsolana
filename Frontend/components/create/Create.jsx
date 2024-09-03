@@ -876,9 +876,9 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
                   <label className="block font-display text-jacarta-700 dark:text-white">
                     Enable for Price
                   </label>
-                  <p className="dark:text-jacarta-300">
+                  <div className="dark:text-jacarta-300">
                     Your Item will be available to purchase immediately
-                  </p>
+                  </div>
                 </div>
               </div>
               <input
@@ -909,13 +909,13 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
                       });
                     }}
                   >
-                    <p
+                    <div
                       className={`dark:text-jacarta-300 text-center ${
                         pricetype && "!text-white"
                       }`}
                     >
                       Fixed Price
-                    </p>
+                    </div>
                   </div>
                   {/* TODO */}
                   {/* <div
@@ -938,7 +938,7 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
                       }`}
                     >
                       Timed Auction
-                    </p>
+                    </div>
                   </div> */}
                 </div>
 
@@ -992,10 +992,10 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
                   </div>
                   {NFTFormValue.PutOnSaleType == "FixedPrice" && pricetype && (
                     <>
-                      <p className="dark:text-jacarta-300">Service Fees 2.5%</p>
-                      <p className="dark:text-jacarta-300">
+                      <div className="dark:text-jacarta-300">Service Fees 2.5%</div>
+                      <div className="dark:text-jacarta-300">
                         You will receive ETH
-                      </p>
+                      </div>
                     </>
                   )}
                   {NFTFormValue?.PutOnSaleType === "TimedAuction" && (
@@ -1077,10 +1077,10 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
             >
               Description
             </label>
-            <p className="mb-3 text-2xs dark:text-jacarta-300">
+            <div className="mb-3 text-2xs dark:text-jacarta-300">
               The description will be included on the item's detail page
               underneath its image. Markdown syntax is supported.
-            </p>
+            </div>
             <textarea
               id="NFTDescription"
               className="w-full rounded-lg border-jacarta-100 py-3 hover:ring-2 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:bg-jacarta-700 dark:text-white dark:placeholder:text-jacarta-300"
@@ -1141,7 +1141,7 @@ console.log("NFTCreatorNFTCreator",NFTCreator)
                           })
                         }
                       >
-                        <p className="text-600">{elm.label}</p>
+                        <div className="text-600">{elm.label}</div>
                       </li>
                     ))}
                   </ul>

@@ -34,11 +34,11 @@ export default function PartnersPage() {
               <h2 className="mb-6 text-center font-display text-3xl font-medium text-jacarta-700 dark:text-white">
                 Who has partnered with us
               </h2>
-              <p className="dark:text-jacarta-300">
+              <div className="dark:text-jacarta-300">
                 While we take pride in being the first and largest marketplace
                 and in our robust feature set, we also help our partners succeed
                 with the following...
-              </p>
+              </div>
             </div>
             <Collcetions />
             <Faq />

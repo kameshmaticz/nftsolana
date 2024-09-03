@@ -88,18 +88,18 @@ export default function Perks() {
               {/* Our Perks when you join the team. */}
               {Preks?.description}
             </h2>
-            <p className="mb-8 text-lg leading-normal dark:text-jacarta-300">
+            <div className="mb-8 text-lg leading-normal dark:text-jacarta-300">
               {/* Employees are our number-one priority, so we like to take care of
               them!
-            </p>
-            <p className="mb-10 dark:text-jacarta-300">
+            </div>
+            <div className="mb-10 dark:text-jacarta-300">
               Every digital creation available through MakersPlace is an
               authentic and truly unique digital creation, signed and issued by
               the creator — made possible by blockchain technology. Even if the
               digital creation is copied, it won't be the authentic and
               originally signed version. */}
               <div dangerouslySetInnerHTML={{__html:Preks?.answer}}></div>
-            </p>
+            </div>
             <div className="flex space-x-4 sm:space-x-12">
               <div className="w-1/2">
                 {benefitsData.slice(0, 3).map((elm, i) => (

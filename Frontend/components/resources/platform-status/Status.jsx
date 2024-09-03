@@ -74,24 +74,24 @@ export default function Status() {
                 {elm.date}
               </div>
               {elm.incident ? (
-                <p className="mb-4 font-medium text-orange-bright">
+                <div className="mb-4 font-medium text-orange-bright">
                   {elm.incident}
-                </p>
+                </div>
               ) : (
-                <p className="dark:text-jacarta-300">
+                <div className="dark:text-jacarta-300">
                   No incidents reported today.
-                </p>
+                </div>
               )}
 
               {elm.resolutions &&
                 elm.resolutions.map((resolution, index) => (
                   <div className="mb-6" key={index}>
-                    <p className="dark:text-jacarta-300">
+                    <div className="dark:text-jacarta-300">
                       <strong className="text-jacarta-700 dark:text-white">
                         {resolution.status}
                       </strong>{" "}
                       - {resolution.description}
-                    </p>
+                    </div>
                     <time className="text-sm dark:text-jacarta-300">
                       {resolution.time}
                     </time>

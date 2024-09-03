@@ -26,10 +26,10 @@ export default function NotFound() {
           <h1 className="mb-6 font-display text-4xl text-jacarta-700 dark:text-white md:text-6xl">
             Page Not Found!
           </h1>
-          <p className="mb-12 text-lg leading-normal dark:text-jacarta-300">
+          <div className="mb-12 text-lg leading-normal dark:text-jacarta-300">
             Oops! The page you are looking for does not exist. It might have
             been moved or deleted.
-          </p>
+          </div>
           <Link
             href="/"
             className="inline-block rounded-full bg-accent py-3 px-8 text-center font-semibold text-white shadow-accent-volume transition-all hover:bg-accent-dark"

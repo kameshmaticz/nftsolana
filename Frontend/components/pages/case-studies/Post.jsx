@@ -66,11 +66,11 @@ export default function Post({ id }) {
 
             <div className="article-content lg:w-2/3">
               <h2 className="text-3xl">The Challenge</h2>
-              <p className="text-lg leading-normal">
+              <div className="text-lg leading-normal">
                 As you may already know, there are an infinite number of things
                 you can test on your site to help you increase sales.
-              </p>
-              <p>
+              </div>
+                <div className="pTag" >
                 From layout to copy to design, there are limitless combinations
                 of changes that may improve your visitor-to-sale conversion
                 rate. But what's "enough" when you're just starting out? What
@@ -79,13 +79,13 @@ export default function Post({ id }) {
                 conversion rate. But what's "enough" when you're just starting
                 out? What elements should you focus on testing before rolling
                 out your traffic campaign?
-              </p>
-              <p>
+              </div>
+                <div className="pTag" >
                 Enthusiasm, commitment and a long list of satisfied clients
                 wasn’t enough for Reborn to achieve the growth they wanted. To
                 get ahead of the competition, they partnered with OMG on a
                 digital solution engineered for market success.
-              </p>
+              </div>
               <h3 className="text-xl">Key problems</h3>
               <ul>
                 <li>

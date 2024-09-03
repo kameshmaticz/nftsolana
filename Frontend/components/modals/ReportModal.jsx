@@ -78,7 +78,7 @@ export default function ReportModal({item}) {
               <div>
                 <div className="mb-[20px]">
                   
-                  <p className="text-sm dark:text-jacarta-400 align-center">It is long established fact that a render will be distracted by the readable content</p>
+                  <div className="text-sm dark:text-jacarta-400 align-center">It is long established fact that a render will be distracted by the readable content</div>
                 </div>
                 <div className="mb-[15px]">
               <div className="mb-2 flex items-center justify-between">

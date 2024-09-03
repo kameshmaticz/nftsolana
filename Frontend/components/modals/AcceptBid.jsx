@@ -351,7 +351,7 @@ export default function AcceptBid({
             {/* Body */}
             <div className="modal-body p-6">
               <div className="mb-[15px]">
-                <p className="pb-3">
+                <div className="pb-3">
                   You are to accept bid for <span>{item.NFTName}</span> from{" "}
                   <span>
                     {" "}
@@ -359,7 +359,7 @@ export default function AcceptBid({
                       ? bidder?.DisplayName
                       : bidder?.TokenBidderAddress}
                   </span>
-                </p>
+                </div>
                 <h6 className="pb-4">
                   {bidder?.TokenBidAmt + " " + bidder?.CoinName} for{" "}
                   {Number(TokenQuantity)} Edition(s)
@@ -394,32 +394,32 @@ export default function AcceptBid({
 
               <div>
                 <div className="flex justify-between flex-row w-100 mb-[5px]">
-                  <p className="text-sm font-semibold text-jacarta-600  dark:text-white">
+                  <div className="text-sm font-semibold text-jacarta-600  dark:text-white">
                   Seller fee in %:
-                  </p>
-                  <p className="text-sm font-normal text-jacarta-600  dark:text-accent-light">
+                  </div>
+                  <div className="text-sm font-normal text-jacarta-600  dark:text-accent-light">
                     {String(0
                         // sellerFees
                         )} {bidder?.CoinName}
-                  </p>
+                  </div>
                 </div>
                 <div className="flex justify-between flex-row w-100 mb-[5px]">
-                  <p className="text-sm font-semibold text-jacarta-600  dark:text-white">
+                  <div className="text-sm font-semibold text-jacarta-600  dark:text-white">
                   Royalty fee in %:
-                  </p>
-                  <p className="text-sm font-normal text-jacarta-600  dark:text-accent-light">
+                  </div>
+                  <div className="text-sm font-normal text-jacarta-600  dark:text-accent-light">
                   {item.NFTRoyalty} %
-                  </p>
+                  </div>
                 </div>
                 <div className="flex justify-between flex-row w-100 mb-[5px]">
-                  <p className="text-sm font-semibold text-jacarta-600  dark:text-white">
+                  <div className="text-sm font-semibold text-jacarta-600  dark:text-white">
                   You will get :
-                  </p>
-                  <p className="text-sm font-normal text-jacarta-600  dark:text-accent-light">
+                  </div>
+                  <div className="text-sm font-normal text-jacarta-600  dark:text-accent-light">
                   {Number( 0
                     // YouWillGet
                     )} {bidder?.CoinName}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

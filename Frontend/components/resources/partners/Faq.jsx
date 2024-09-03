@@ -7,13 +7,13 @@ export default function Faq() {
       <h2 className="mb-10 text-center font-display text-xl font-medium text-jacarta-700 dark:text-white">
         Frequently asked questions
       </h2>
-      <p className="mx-auto mb-10 max-w-md text-center text-lg dark:text-jacarta-300">
+      <div className="mx-auto mb-10 max-w-md text-center text-lg dark:text-jacarta-300">
         Join our community now to get free updates and also alot of freebies are
         waiting for you or
         <Link href="/contact" className="text-accent">
           Contact Support
         </Link>
-      </p>
+      </div>
 
       <div className="accordion mx-auto max-w-[35rem]" id="accordionFAQ">
         {faqs2.map((elm, i) => (
@@ -54,7 +54,7 @@ export default function Faq() {
               data-bs-parent="#accordionFAQ"
             >
               <div className="accordion-body border-t border-jacarta-100 bg-white p-4 dark:border-jacarta-600 dark:bg-jacarta-700">
-                <p className="dark:text-jacarta-200">{elm.answer}</p>
+                <div className="dark:text-jacarta-200">{elm.answer}</div>
               </div>
             </div>
           </div>

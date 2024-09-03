@@ -40,8 +40,8 @@ export default function CancelBid() {
               <div>
                 <div className="mb-[20px]">
                   
-                  <p className="text-sm dark:text-jacarta-400 text-center">You are about to delete</p>
-                  <p className="text-sm font-semibold dark:text-jacarta-400 text-center">asdasd</p>
+                  <div className="text-sm dark:text-jacarta-400 text-center">You are about to delete</div>
+                  <div className="text-sm font-semibold dark:text-jacarta-400 text-center">asdasd</div>
                 </div>
          
               </div>

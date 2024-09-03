@@ -133,18 +133,18 @@ export default function SinglePost({ id }) {
               From a barely understood abbreviation (hello, right click
               savers!), it turned into a massive cultural phenomenon adopted by
               blue chip companies like Adidas and Twitter in a few short months.
-            </p>
-            <p>
+            </div>
+              <div className="pTag" >
               Just like the NFT space has grown, so has Rarible.com. What
               started with a few people in a café grew into a passionate team of
               over 100, and counting!
-            </p>
-            <p>
+            </div>
+              <div className="pTag" >
               And that team has been busy. In 2021, we've shipped more features
               than ever before, scaled to a multi-chain platform with Flow and
               Tezos integrations, and watched our community soar on every social
               media channel.
-            </p>
+            </div>
             
             
 
@@ -152,9 +152,9 @@ export default function SinglePost({ id }) {
               creating Rarible day by day - by using the platform, requesting
               features, sharing your feedback, being as active and passionate as
               you are.
-            </p>
+            </div>
             <h2 className="text-xl">A Picture is Worth a Thousand Words</h2>
-            <p>
+              <div className="pTag" >
               Ut perspiciatis, unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
               quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -180,7 +180,7 @@ export default function SinglePost({ id }) {
                 className="rounded-2lg"
               />
             </div> */}
-                {/* <p>
+                {/*   <div className="pTag" >
               Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
               aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
               imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
@@ -189,7 +189,7 @@ export default function SinglePost({ id }) {
               Aenean massa. Cum sociis Theme natoque penatibus et magnis dis
               parturient montes, nascetur ridiculus mus. Aenean imperdiet. Etiam
               ultricies. Ut enim.
-            </p>
+            </div>
             <blockquote className="!my-10 text-xl italic text-jacarta-700 dark:text-white">
               “Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut
               libero venenatis faucibus. Nullam quis.”
@@ -197,7 +197,7 @@ export default function SinglePost({ id }) {
                 — Vincent De Paul
               </cite>
             </blockquote>
-            <p>
+              <div className="pTag" >
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -206,7 +206,7 @@ export default function SinglePost({ id }) {
               elit. Cum sociis Theme natoque penatibus et magnis dis parturient
               montes, nascetur ridiculus mus. Aenean imperdiet. Etiam ultricies.
               Ut enim.
-            </p> */}
+            </div> */}
               </div>
             </article>
 
@@ -260,10 +260,10 @@ export default function SinglePost({ id }) {
               <span className="mb-3 mt-2 block font-display text-base text-jacarta-700 dark:text-white">
                 ib-themes
               </span>
-              <p className="mb-4 dark:text-jacarta-300">
+              <div className="mb-4 dark:text-jacarta-300">
                 Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme
                 natoque penatibus et magnis dis parturient montes.
-              </p>
+              </div>
               <div className="flex space-x-5">
                 {socials2.map((elm, i) => (
                   <a key={i} href={elm.href} className="group">

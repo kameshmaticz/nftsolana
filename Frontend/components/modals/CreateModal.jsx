@@ -48,12 +48,12 @@ export default function CreateModal({
               {/* {ApproveButton == "start" && (
                 <div>
                   <div className="mb-[20px]">
-                    <p className="font-display text-sm font-semibold text-jacarta-700 dark:text-white">
+                    <div className="font-display text-sm font-semibold text-jacarta-700 dark:text-white">
                       Approve Call
-                    </p>
-                    <p className="text-sm dark:text-jacarta-400">
+                    </div>
+                    <div className="text-sm dark:text-jacarta-400">
                       One Time Process
-                    </p>
+                    </div>
                   </div>
 
                   <div className="flex items-center justify-center space-x-4">
@@ -83,12 +83,12 @@ export default function CreateModal({
 
               <div>
                 <div className="mb-[20px]">
-                  <p className="font-display text-sm font-semibold text-jacarta-700 dark:text-white">
+                  <div className="font-display text-sm font-semibold text-jacarta-700 dark:text-white">
                     IPFS Metadata
-                  </p>
-                  <p className="text-sm dark:text-jacarta-400">
+                  </div>
+                  <div className="text-sm dark:text-jacarta-400">
                     Generates IPFS Metadata for your NFT
-                  </p>
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-center space-x-4">
@@ -119,12 +119,12 @@ export default function CreateModal({
               </div>
               <div>
                 <div className="mb-[20px]">
-                  <p className="font-display text-sm font-semibold text-jacarta-700 dark:text-white">
+                  <div className="font-display text-sm font-semibold text-jacarta-700 dark:text-white">
                     Mint NFT
-                  </p>
-                  <p className="text-sm dark:text-jacarta-400">
+                  </div>
+                  <div className="text-sm dark:text-jacarta-400">
                     Call Contract Method
-                  </p>
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-center space-x-4">

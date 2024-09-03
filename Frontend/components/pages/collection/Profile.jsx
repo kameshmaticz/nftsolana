@@ -173,10 +173,10 @@ export default function Profile({ id }) {
             </a>
           </div>
 
-          <p className="mx-auto max-w-xl text-lg dark:text-jacarta-300">
+          <div className="mx-auto max-w-xl text-lg dark:text-jacarta-300">
             Unique, fully 3D and built to unite the design multiverse. Designed
             and styled by Digimental.
-          </p>
+          </div>
 
           <div className="mt-6 flex items-center justify-center space-x-2.5">
             <div className="rounded-xl border border-jacarta-100 bg-white hover:bg-jacarta-100 dark:border-jacarta-600 dark:bg-jacarta-700 dark:hover:bg-jacarta-600">

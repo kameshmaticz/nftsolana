@@ -149,7 +149,7 @@ export default function WalletModal() {
                   d="M267.2 153.5l-52.3-15.3 15.9 23.9-23.7 46 31.2-.4h46.5zm-163.6-15.3l-52.3 15.3-17.4 54.2h46.4l31.1.4-23.6-46zm71 26.4l3.3-57.7 15.2-41.1h-67.5l15 41.1 3.5 57.7 1.2 18.2.1 44.8h27.7l.2-44.8z"
                 ></path>
               </svg>
-              <p className="text-center dark:text-white">
+              <div className="text-center dark:text-white">
                 You don't have MetaMask in your browser, please download it from{" "}
                 <a
                   href="https://metamask.io/"
@@ -159,7 +159,7 @@ export default function WalletModal() {
                 >
                   MetaMask
                 </a>
-              </p>
+              </div>
             </div>
             <div className="modal-footer">
               <div className="flex items-center justify-center space-x-4">

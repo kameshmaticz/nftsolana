@@ -20,10 +20,10 @@ export default function NewsLetter() {
             <h2 className="mb-6 font-display text-2xl text-jacarta-700 dark:text-white">
               Sign up for The Tide, Xhibiter's newsletter!
             </h2>
-            <p className="mb-10 text-lg leading-normal dark:text-jacarta-300">
+            <div className="mb-10 text-lg leading-normal dark:text-jacarta-300">
               Join our mailing list to stay in the loop with our newest feature
               releases, NFT drops, and tips and tricks for navigating NFT-Style
-            </p>
+            </div>
 
             <form onSubmit={(e) => e.preventDefault()} className="relative">
               <input

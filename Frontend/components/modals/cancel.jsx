@@ -129,8 +129,8 @@ export default function Cancel({
                             <div>
                                 <div className="mb-[20px]">
 
-                                    <p className="text-sm dark:text-jacarta-400 text-center">You are about to Cancel Listing</p>
-                                    <p className="text-sm font-semibold dark:text-jacarta-400 text-center">{item?.NFTName}</p>
+                                    <div className="text-sm dark:text-jacarta-400 text-center">You are about to Cancel Listing</div>
+                                    <div className="text-sm font-semibold dark:text-jacarta-400 text-center">{item?.NFTName}</div>
                                 </div>
 
                             </div>
