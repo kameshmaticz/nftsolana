@@ -26,7 +26,7 @@ export default function Details({NFTId}) {
         <span className="mr-2 min-w-[9rem] dark:text-jacarta-300">
           Token Standard:
         </span>
-        <span className="text-jacarta-700 dark:text-white">ERC-721</span>
+        <span className="text-jacarta-700 dark:text-white">SOL-721</span>
       </div>
       <div className="flex items-center">
         <span className="mr-2 min-w-[9rem] dark:text-jacarta-300">

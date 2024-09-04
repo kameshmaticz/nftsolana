@@ -87,16 +87,17 @@ export default function Nftcard({
   };
 
   return (
-    <div className="block rounded-2.5xl border border-jacarta-100 bg-white p-[1.1875rem] transition-shadow hover:shadow-lg dark:border-jacarta-700 dark:bg-jacarta-700">
+    <div className="block rounded-2.5xl border border-jacarta-100 bg-white p-[1.1875rem] transition-shadow hover:shadow-lg dark:border-jacarta-700 dark:bg-jacarta-700 h-full">
       <figure className="relative">
         <Link
           href={`/item/${product?.ContractAddress}/${product?.NFTOwner}/${product?.NFTId}`}
         >
-          <div class="min-w-230 min-h-230">
+          <div class="h-[230px] w-[230px]">
             <ImgAudVideo
               file={`${Config.IMG_URL}/nft/${product?.NFTCreator}/Compressed/NFT/${product?.CompressedFile}`}
               origFile={`${Config.IMG_URL}/nft/${product?.NFTCreator}/Original/NFT/${product?.NFTOrginalImage}`}
               thumb={`${Config.IMG_URL}/nft/${product?.NFTCreator}/Compressed/NFT_THUMB/${product?.CompressedThumbFile}`}
+              classname={"w-full h-full object-cover"}
               type={
                 product?.CompressedFile
                   ? product?.CompressedFile?.includes(".webp") ||
@@ -219,7 +220,7 @@ export default function Nftcard({
             {product?.NFTName}
           </span>
         </Link>
-        <div className="dropup rounded-full hover:bg-jacarta-100 dark:hover:bg-jacarta-600">
+        {/* <div className="dropup rounded-full hover:bg-jacarta-100 dark:hover:bg-jacarta-600">
           <a
             href="#"
             className="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm"
@@ -252,12 +253,31 @@ export default function Nftcard({
               Report
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="mt-2 text-sm">
+     <div className="mt-2 text-sm flex items-center justify-between">
+     {product?.NFTPrice &&  product?.NFTPrice !== "0" && <span className="flex items-center whitespace-nowrap rounded-md border border-jacarta-100 py-1 px-2 dark:border-jacarta-600">
+         <span data-tippy-content="SOL">
+
+            <Image
+              width={80}
+              height={80}
+              src="/img/chains/Sol_small.png"
+              alt="Sol"
+              className=" border-[5px] w-[30px]"
+            />
+          </span>
+          {console.log("pxxxroduct" , product)}
+      <span className="text-sm font-medium tracking-tight text-green">
+          {product?.NFTPrice} SOL
+          </span>
+          </span>}
+
         <span className="mr-1 text-jacarta-700 dark:text-jacarta-200">
           {/* {isEmpty(product?.PutOnSale) ? product?.PutOnSaleType == "UnlimitedAuction" ? product?.PutOnSaleType : product?.PutOnSaleType == "Fixed" :  } {} */}
         </span>
+
+
         <span className="text-jacarta-500 dark:text-jacarta-300">
           {product?.NFTBalance}/{product?.NFTQuantity}
         </span>

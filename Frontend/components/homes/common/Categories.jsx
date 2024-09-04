@@ -523,7 +523,7 @@ const sortingOptions = [{key : "BLTH" ,  value : "Price Low to High" } , {key : 
         <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
           {   hotsalestate == true ? (
                 <>
-                  <div className="text-centre">
+                  <div className="text-center">
                     <h3>Loading...</h3>
                     {/* {/   <div className="pTag" >Come back soon ! or try to browse something for you on our marketplace</div> /} */}
                     {/*   <div className="pTag" >Nothing for ReSale at this time</div> */}

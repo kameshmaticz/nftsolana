@@ -429,6 +429,37 @@ console.log("customurl",customurl);
               </span>
             </button>
           </li>
+
+          {/* //Favorite */}
+          <li className="nav-item" role="presentation">
+            <button
+              className="nav-link relative flex items-center whitespace-nowrap py-3 px-6 text-jacarta-400 hover:text-jacarta-700 dark:hover:text-white"
+              id="favourite-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#favourite"
+              type="button"
+              role="tab"
+              aria-controls="favourite"
+              aria-selected="false"
+              onClick={ ()=>{
+                setFilter("favourite")
+              }}
+            >
+             <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                className="mr-1 h-5 w-5 fill-current"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M10.9 2.1l9.899 1.415 1.414 9.9-9.192 9.192a1 1 0 0 1-1.414 0l-9.9-9.9a1 1 0 0 1 0-1.414L10.9 2.1zm.707 2.122L3.828 12l8.486 8.485 7.778-7.778-1.06-7.425-7.425-1.06zm2.12 6.364a2 2 0 1 1 2.83-2.829 2 2 0 0 1-2.83 2.829z" />
+              </svg>
+              <span className="font-display text-base font-medium">
+              Favourite
+              </span>
+            </button>
+          </li>
         </ul>
         {console.log("filterfilterfilter" , value)}
 
@@ -454,7 +485,7 @@ console.log("customurl",customurl);
             {/* end filters */}
 
             {/* Grid */}
-            <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
+            <div className={ Tokenss[value] && Tokenss[value]?.list?.length > 0 ? "grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4" : 'w-full'}>
               { Tokenss[value] &&  Tokenss[value]?.list?.length > 0 ?
                 Tokenss[value]?.list.map((item, index) => (
                   <article key={index}>
@@ -637,7 +668,7 @@ console.log("customurl",customurl);
             {/* end filters */}
 
             {/* Grid */}
-            <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
+            <div className={ Tokenss[value] && Tokenss[value]?.list?.length > 0 ? "grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4" : 'w-full'}>
               { Tokenss[value] && Tokenss[value]?.list?.length > 0 ?
                 
                 Tokenss[value]?.list?.map((item, index) => (
@@ -806,7 +837,13 @@ console.log("customurl",customurl);
             </div>
             {/* end grid */}
           </div>}
+
+
           {/* end owned tab */}
+
+
+
+
 
           {/* Created Tab */}
      {  value == "created" &&    <div
@@ -820,7 +857,7 @@ console.log("customurl",customurl);
             {/* end filters */}
 
             {/* Grid */}
-            <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
+            <div className={ Tokenss[value] && Tokenss[value]?.list?.length > 0 ? "grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4" : 'w-full'}>
               {allItems
                 .filter((elm) => elm.type == "created")
                 .map((elm, i) => (
@@ -976,84 +1013,40 @@ console.log("customurl",customurl);
             {/* end grid */}
           </div>}
 
+     
+
 
           {/* end created tab */}
 
           {/* Collections Tab */}
-          {/* <div
+          <div
             className="tab-pane fade"
-            id="collections"
+            id="favourite"
             role="tabpanel"
-            aria-labelledby="collections-tab"
+            aria-labelledby="favourite-tab"
           >
-            <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
-              {collections3.slice(0, 4).map((elm, i) => (
-                <article key={i}>
-                  <div className="rounded-2.5xl border border-jacarta-100 bg-white p-[1.1875rem] transition-shadow hover:shadow-lg dark:border-jacarta-700 dark:bg-jacarta-700">
-                    <Link
-                      href={`/collection/${elm.id}`}
-                      className="flex space-x-[0.625rem]"
-                    >
-                      <span className="w-[74.5%]">
-                        <Image
-                          width={152}
-                          height={242}
-                          src={elm.images[0]}
-                          alt="item 1"
-                          className="h-full w-full rounded-[0.625rem] object-cover"
-                          loading="lazy"
-                        />
-                      </span>
-                      <span className="flex w-1/3 flex-col space-y-[0.625rem]">
-                        {elm.images.slice(1).map((img, i2) => (
-                          <Image
-                            width={68}
-                            height={74}
-                            key={i2}
-                            src={img}
-                            alt="item 1"
-                            className="h-full rounded-[0.625rem] object-cover"
-                            loading="lazy"
-                          />
-                        ))}
-                      </span>
-                    </Link>
-
-                    <Link
-                      href={`/collection/${elm.id}`}
-                      className="mt-4 block font-display text-base text-jacarta-700 hover:text-accent dark:text-white dark:hover:text-accent"
-                    >
-                      {elm.name}
-                    </Link>
-
-                    <div className="mt-2 flex items-center justify-between text-sm font-medium tracking-tight">
-                      <div className="flex flex-wrap items-center">
-                        <Link
-                          href={`/user/${elm.id}`}
-                          className="mr-2 shrink-0"
-                        >
-                          <Image
-                            width={20}
-                            height={20}
-                            src={elm.avatar}
-                            alt="owner"
-                            className="h-5 w-5 rounded-full"
-                          />
-                        </Link>
-                        <span className="mr-1 dark:text-jacarta-400">by</span>
-                        <Link href={`/user/${elm.id}`} className="text-accent">
-                          <span>{elm.ownerName}</span>
-                        </Link>
-                      </div>
-                      <span className="text-sm dark:text-jacarta-300">
-                        {elm.itemCount} Items
-                      </span>
-                    </div>
-                  </div>
-                </article>
-              ))}
+            <div className={ Tokenss[value] && Tokenss[value]?.list?.length > 0 ? "grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4" : 'w-full'}>
+              { Tokens[filter]?.list.length > 0 ? Tokens[filter]?.list.map((item, index) => (
+                  <article key={item._id}>
+{                    console.log('nftdatfavouriteaxas' , item) }
+                    
+                   <Nftcard
+                  product={item}
+                  index={item._id}
+                  LikeList={LikeList}
+                  LikedTokenList={LikedTokenList}
+                  setLikedTokenList={setLikedTokenList}
+                  LikeForwardRef={LikeForwardRef}
+                  // datas={items2[index]}
+                />
+                  
+                  
+                  </article>
+                )) : <> 
+                <Nodata />
+                </>}
             </div>
-          </div> */}
+          </div>
           {/* end collections tab */}
 
           {/* Activity Tab */}
@@ -1075,6 +1068,44 @@ console.log("customurl",customurl);
            Loader={loader} />
           </div>}
           {/* end activity tab */}
+
+
+          {/* start for favroties */}
+{filter === "favourite" && <div
+            className="tab-pane fade"
+            id="favourite"
+            role="tabpanel"
+            aria-labelledby="favourite-tab"
+          >
+            {console.log('Tokenssownwe' , Tokenss)}
+
+            <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
+              { Tokens[filter]?.list.length > 0 ? Tokens[filter]?.list.map((item, index) => (
+                  <article key={item._id}>
+{                    console.log('nftdatfavouriteaxas' , item) }
+                    
+                   <Nftcard
+                  product={item}
+                  index={item._id}
+                  LikeList={LikeList}
+                  LikedTokenList={LikedTokenList}
+                  setLikedTokenList={setLikedTokenList}
+                  LikeForwardRef={LikeForwardRef}
+                  // datas={items2[index]}
+                />
+                  
+                  
+                  </article>
+                )) : <> 
+                <Nodata />
+                </>}
+            </div>
+            {/* end grid */}
+          </div>}
+{/* end of favroties */}
+
+
+
         </div>}
 
         

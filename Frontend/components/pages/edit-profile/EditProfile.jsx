@@ -28,6 +28,21 @@ export default function EditProfile({params}) {
   const [err,setErr]=useState({})
   const [Follow, SetFollow] = useState("follow");
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        // toast.success('Copied!');
+        console.log('Copied!');
+
+      },
+      () => {
+        console.error('Failed to copy!');
+        // toast.error('Failed to copy!');
+      }
+    );
+  };
+
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -180,12 +195,12 @@ export default function EditProfile({params}) {
           },
         });
 
-        dispatch({
-          type: "Admin_address",
-          Admin_address: {
-            Admin_address: !Admin_address,
-          },
-        });
+        // dispatch({
+        //   type: "Admin_address",
+        //   Admin_address: {
+        //     Admin_address: !Admin_address,
+        //   },
+        // });
 
         if (Resp.data.CustomUrl)
           document.cookie =
@@ -305,7 +320,7 @@ export default function EditProfile({params}) {
                   type="text"
                   id="Twitter"
                   className="w-full rounded-t-lg border-jacarta-100 py-3 pl-10 hover:ring-2 hover:ring-accent/10 focus:ring-inset focus:ring-accent dark:border-jacarta-600 dark:bg-jacarta-700 dark:text-white dark:placeholder:text-jacarta-300"
-                  placeholder="@twittername"
+                  placeholder="@twitter account"
                   value={userData?.Twitter}
                   onChange={onChange}
                 />
@@ -327,27 +342,28 @@ export default function EditProfile({params}) {
                   type="text"
                   id="Instagram"
                   className="-mt-px w-full border-jacarta-100 py-3 pl-10 hover:ring-2 hover:ring-accent/10 focus:ring-inset focus:ring-accent dark:border-jacarta-600 dark:bg-jacarta-700 dark:text-white dark:placeholder:text-jacarta-300"
-                  placeholder="instagramname"
+                  placeholder="instagram account"
                   value={userData?.Instagram}
                   onChange={onChange}
                 />
               </div>
               <div className="relative">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 fill-jacarta-300 dark:fill-jacarta-400"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-2.29-2.333A17.9 17.9 0 0 1 8.027 13H4.062a8.008 8.008 0 0 0 5.648 6.667zM10.03 13c.151 2.439.848 4.73 1.97 6.752A15.905 15.905 0 0 0 13.97 13h-3.94zm9.908 0h-3.965a17.9 17.9 0 0 1-1.683 6.667A8.008 8.008 0 0 0 19.938 13zM4.062 11h3.965A17.9 17.9 0 0 1 9.71 4.333 8.008 8.008 0 0 0 4.062 11zm5.969 0h3.938A15.905 15.905 0 0 0 12 4.248 15.905 15.905 0 0 0 10.03 11zm4.259-6.667A17.9 17.9 0 0 1 15.973 11h3.965a8.008 8.008 0 0 0-5.648-6.667z" />
-                </svg>
-                <input
+              <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 14 24"
+  width="34"
+  height="34"
+  className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 fill-jacarta-300 dark:fill-jacarta-400"
+>
+  <path fill="none" d="M0 0h24v24H0z" />
+  <path d="M19.615 6.25a2.792 2.792 0 00-1.964-1.97C15.905 4 12 4 12 4s-3.905 0-5.651.281A2.792 2.792 0 004.385 6.25C4 8.035 4 12 4 12s0 3.965.385 5.75a2.792 2.792 0 001.964 1.97C8.095 20 12 20 12 20s3.905 0 5.651-.281a2.792 2.792 0 001.964-1.97C20 15.965 20 12 20 12s0-3.965-.385-5.75zM10 15.5v-7l6 3.5-6 3.5z" />
+</svg>
+
+                <input  
                   type="url"
                   id="Youtube"
                   className="-mt-px w-full rounded-b-lg border-jacarta-100 py-3 pl-10 hover:ring-2 hover:ring-accent/10 focus:ring-inset focus:ring-accent dark:border-jacarta-600 dark:bg-jacarta-700 dark:text-white dark:placeholder:text-jacarta-300"
-                  placeholder="yoursitename.com"
+                  placeholder="Youtube url"
                   value={userData?.Youtube}
                   onChange={onChange}
                 />
@@ -360,14 +376,16 @@ export default function EditProfile({params}) {
               <button
                 className="js-copy-clipboard flex w-100px select-none items-center rounded-lg border border-jacarta-100 bg-white py-3 px-4 hover:bg-jacarta-50 dark:border-jacarta-600 dark:bg-jacarta-700 dark:text-jacarta-300"
                 data-tippy-content="Copy"
-              >
+                onClick={copyToClipboard(userData?.WalletAddress)}
+             >
                 <span>{userData?.WalletAddress}</span>
-                <div className="ml-auto mb-px h-4 w-4 fill-jacarta-500 dark:fill-jacarta-300">
+                <div className="ml-auto mb-px h-4 w-4 fill-jacarta-500 dark:fill-jacarta-300" >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     width="15"
                     height="16"
+                    className="ml-1"
                   >
                     <path fill="none" d="M0 0h24v24H0z"></path>
                     <path d="M7 7V3a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-4v3.993c0 .556-.449 1.007-1.007 1.007H3.007A1.006 1.006 0 0 1 2 20.993l.003-12.986C2.003 7.451 2.452 7 3.01 7H7zm2 0h6.993C16.549 7 17 7.449 17 8.007V15h3V4H9v3zM4.003 9L4 20h11V9H4.003z"></path>

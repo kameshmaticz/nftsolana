@@ -27,7 +27,7 @@ const saleType = [
 ];
 
 const currency = [
-  { chain: "ETH", src: "/img/chains/ETH.png" },
+  { chain: "SOL", src: "/img/chains/Sol_big.png" },
   { chain: "FLOW", src: "/img/chains/FLOW.png" },
   { chain: "FUSD", src: "/img/chains/FUSD.png" },
   { chain: "XTZ", src: "/img/chains/XTZ.png" },
@@ -496,7 +496,7 @@ export default function Filters() {
                     width={20}
                     height={20}
                     src={activeCurrency.src}
-                    alt="eth"
+                    alt="sol"
                     className="mr-2 h-5 w-5 rounded-full"
                   />
                   {activeCurrency.chain}
@@ -528,7 +528,7 @@ export default function Filters() {
                         width={20}
                         height={20}
                         src={elm.src}
-                        alt="eth"
+                        alt="sol"
                         className="mr-2 h-5 w-5 rounded-full"
                       />
                       {elm.chain}

@@ -13,9 +13,9 @@ export const investData = [
   },
   {
     id: 3,
-    symbol: "ETH",
+    symbol: "SOL",
     apr: "0.31%-184.44%",
-    imgSrc: "/img/crypto-trading/eth.png",
+    imgSrc: "/img/crypto-trading/sol.png",
   },
   {
     id: 4,

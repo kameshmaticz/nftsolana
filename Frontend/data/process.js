@@ -13,9 +13,9 @@ export const processes = [
     backgroundColor: "#C4F2E3",
     imgSrc: "/img/process/process2.svg",
     alt: "process",
-    title: "2. Create Your Collection",
+    title: "2. Create Your NFT",
     description:
-      "Click Create and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.",
+      "Click Create and set up your NFT. Add social links, a description, profile & banner images, and set a secondary sales fee.",
   },
   {
     id: 3,
@@ -78,10 +78,10 @@ export const process3 = [
     backgroundColor: "#C4F2E3",
     iconSrc: "/img/process/process6.svg",
     alt: "process",
-    title: "2. Create Your Collection",
+    title: "2. Create Your NFT",
     bgClass: "bg-green",
     description:
-      "Click Create and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.",
+      "Click Create and set up your NFT. Add social links, a description, profile & banner images, and set a secondary sales fee.",
   },
   {
     id: 3,

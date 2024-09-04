@@ -259,8 +259,8 @@ console.log('playerRefcurrenteeeee' , playerRef?.current?.swiper)
             {
             loadingstate == true ? (
               <>
-                <div className="text-centre">
-                  <h3>Loading...</h3>
+                <div className="text-center">
+                  <h3 className="">Loading...</h3>
                   <div className="load-more">
                   </div>
                 </div>

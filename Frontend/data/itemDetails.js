@@ -1,7 +1,7 @@
 export const offers = [
   {
     id: 1,
-    currency: "ETH",
+    currency: "SOL",
     amount: "30",
     usdPrice: "$90,136.10",
     difference: "70% below",
@@ -10,7 +10,7 @@ export const offers = [
   },
   {
     id: 2,
-    currency: "ETH",
+    currency: "SOL",
     amount: "15.5",
     usdPrice: "$45,458.10",
     difference: "70% below",
@@ -19,7 +19,7 @@ export const offers = [
   },
   {
     id: 3,
-    currency: "ETH",
+    currency: "SOL",
     amount: "0.9",
     usdPrice: "$2,347.90",
     difference: "98% below",
@@ -28,7 +28,7 @@ export const offers = [
   },
   {
     id: 4,
-    currency: "ETH",
+    currency: "SOL",
     amount: "1.2",
     usdPrice: "$4,568.40",
     difference: "100% below",
@@ -37,7 +37,7 @@ export const offers = [
   },
   {
     id: 5,
-    currency: "ETH",
+    currency: "SOL",
     amount: "0.5",
     usdPrice: "$1,699.10",
     difference: "100% below",
@@ -46,7 +46,7 @@ export const offers = [
   },
   {
     id: 6,
-    currency: "ETH",
+    currency: "SOL",
     amount: "4.7",
     usdPrice: "$13,966.64",
     difference: "40% above",
@@ -84,8 +84,8 @@ export const activity = [
   {
     id: 1,
     action: "Bid",
-    currency: "ETH",
-    amount: "30 ETH",
+    currency: "SOL",
+    amount: "30 SOL",
     user: "AD496A",
     token: "Polymorph: MORPH Token",
     timeAgo: "19 days ago",
@@ -94,8 +94,8 @@ export const activity = [
   {
     id: 2,
     action: "Transfer",
-    currency: "ETH",
-    amount: ".00510 ETH",
+    currency: "SOL",
+    amount: ".00510 SOL",
     user: "The_vikk",
     token: "Polymorph: MORPH Token",
     timeAgo: "16 days ago",
@@ -104,8 +104,8 @@ export const activity = [
   {
     id: 3,
     action: "Sale",
-    currency: "ETH",
-    amount: "1.50 ETH",
+    currency: "SOL",
+    amount: "1.50 SOL",
     user: "CryptoGuysNFT",
     token: "Polymorph: MORPH Token",
     timeAgo: "19 days ago",

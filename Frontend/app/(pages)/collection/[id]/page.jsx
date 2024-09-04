@@ -8,6 +8,9 @@ export const metadata = {
   title: "Collection Details || NFT STYLE ",
 };
 
+// export async function generateStaticParams() {
+//   return  params
+// }
 export default function ClooectionSinglePage({ params }) {
   return (
     <>
@@ -21,3 +24,8 @@ export default function ClooectionSinglePage({ params }) {
     </>
   );
 }
+
+// ClooectionSinglePage.getInitialProps = async (params) => {
+//   let pageProps = params;
+//   return pageProps;
+// };

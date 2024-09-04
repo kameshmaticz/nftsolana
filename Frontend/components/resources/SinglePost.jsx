@@ -55,7 +55,7 @@ export default function SinglePost({ id }) {
     <section className="relative py-16 md:py-24">
       {
         status == false ? <>
-          <div className="text-centre">
+          <div className="text-center">
             <center><h3>Loading...</h3></center>
           </div>
         </> : <>

@@ -1,4 +1,5 @@
 import { offers } from "@/data/itemDetails";
+import Image from "next/image";
 import Link from "next/link";
 
 //npm
@@ -101,7 +102,14 @@ export default function Offers({
                   fill="#62688F"
                   d="M959.8 1397.6v441.7l540.1-760.6z"
                 ></path>
-              </svg>
+              </svg> 
+              <Image
+                width={138}
+                height={138}
+                src="/img/chains/Sol_small.png"
+                alt="Sol"
+                className=" border-[5px] w-[30px]"
+              />
             </span>
             <span className="text-sm font-medium tracking-tight text-green">
               {elm.TokenBidAmt} {elm?.CoinName}
@@ -147,7 +155,7 @@ export default function Offers({
       
     )
     :
-    <div className="flex items-center mx-5"> No Bids Yet </div>}
+    <div className="flex items-center text-center h-[40px] w-full mx-5"> No Bids Yet </div>}
     </div>
   );
 }

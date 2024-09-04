@@ -68,6 +68,8 @@ export default function PlaceOrder({
   const { payload } = useSelector((state) => state.LoginReducer.User);
 
   const [FormValue, SetFormValue] = useState({...item,"CoinName" : "SOL"});
+
+  console.log("itemssss",item,FormValue)
   const [ValidateError, SetValidateError] = useState({});
   useEffect(() => {
     // if (!FormValue?.CoinName) {
@@ -82,6 +84,17 @@ export default function PlaceOrder({
 
     SetFormValue({ ...FormValue, ...{ ["EmailId"]: payload?.EmailId } });
   }, []);
+
+  useEffect(()=>{
+    SetFormValue({
+      ...FormValue,
+      ...item,
+      ...{
+        ["CoinName"]:
+            "Sol" ,
+      }
+    })
+  },[item])
 
   useEffect(()=>{
     console.log("currentCurrency",currency[0])

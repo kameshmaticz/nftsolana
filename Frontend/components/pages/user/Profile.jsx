@@ -11,6 +11,7 @@ import { userRegister } from "@/actions/axios/user.axios";
 import Config from '@/Config/config'
 
 export default function Profile({params}) {
+  
   console.log("🚀 ~ Profile ~ params:", params)
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   const [CustomUrl,setCustomurl]=useState(params?.customurl);
@@ -24,6 +25,9 @@ export default function Profile({params}) {
   }, []);
 
 
+  const reloadPage = () => {
+    window.location.reload();
+  };
   useEffect(() => {
     getProfileDetails();
   }, [CustomUrl]);
@@ -183,7 +187,7 @@ export default function Profile({params}) {
                 className="dropdown-menu dropdown-menu-end z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl dark:bg-jacarta-800"
                 aria-labelledby="collectionShare"
               >
-                <Socials />
+                <Socials data={userData} />
               </div>
             </div>
             <div className="dropdown rounded-xl border border-jacarta-100 bg-white hover:bg-jacarta-100 dark:border-jacarta-600 dark:bg-jacarta-700 dark:hover:bg-jacarta-600">
@@ -212,16 +216,16 @@ export default function Profile({params}) {
                 className="dropdown-menu dropdown-menu-end z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl dark:bg-jacarta-800"
                 aria-labelledby="collectionActions"
               >
-                <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors hover:bg-jacarta-50 dark:text-white dark:hover:bg-jacarta-600">
+                {/* <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors hover:bg-jacarta-50 dark:text-white dark:hover:bg-jacarta-600">
                   New bid
-                </button>
+                </button> */}
                 <hr className="my-2 mx-4 h-px border-0 bg-jacarta-100 dark:bg-jacarta-600" />
-                <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors hover:bg-jacarta-50 dark:text-white dark:hover:bg-jacarta-600">
+                <button onClick={reloadPage}className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors hover:bg-jacarta-50 dark:text-white dark:hover:bg-jacarta-600">
                   Refresh Metadata
                 </button>
-                <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors hover:bg-jacarta-50 dark:text-white dark:hover:bg-jacarta-600">
+                {/* <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors hover:bg-jacarta-50 dark:text-white dark:hover:bg-jacarta-600">
                   Share
-                </button>
+                </button> */}
                 <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors hover:bg-jacarta-50 dark:text-white dark:hover:bg-jacarta-600">
                   Report
                 </button>

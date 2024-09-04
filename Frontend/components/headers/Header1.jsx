@@ -56,11 +56,32 @@ export default function Header1() {
 
     window.addEventListener("scroll", handleScroll);
 
+
+    window.addEventListener('load', function () {
+      // Add a click event listener to the body
+      document.body.addEventListener('click', function () {
+          // Code to execute when the body is clicked
+  
+          Setval(''); SetSearch(null)
+      });
+  
+  
+  });
+
+
+
     // Clean up event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+
+
+    
+
+
   }, []);
+
+ 
 
   useEffect(() => {
     console.log(
@@ -159,7 +180,7 @@ export default function Header1() {
 
   const getCategory = async () => {
     let Resp = await Category();
-    console.log("RespCategory-->", Resp);
+    console.log("RespCategory-->ccas", Resp);
     if (Resp?.data) {
       var sendda = [];
       var data = (Resp.data || []).map((item) => {
@@ -167,6 +188,7 @@ export default function Header1() {
           sendda.push({
             label: item.name,
             value: item.name,
+            image : item.image,
             description: item.description,
           });
         }
@@ -377,7 +399,7 @@ export default function Header1() {
                 ) : val === "" ? (
                   <></>
                 ) : (
-                  <span className="error_msg emsg pTag">No data Found</span>
+                  <span className="error_msg emsg pTag text-center">No data Found</span>
                 )}
               </div>
             )}
@@ -572,7 +594,7 @@ export default function Header1() {
                     ) : val === "" ? (
                       <></>
                     ) : (
-                      <span className="error_msg emsg pTag">No data Found</span>
+                      <span className="error_msg emsg pTag text-center">No data Found</span>
                     )}
                   </div>
                 )}

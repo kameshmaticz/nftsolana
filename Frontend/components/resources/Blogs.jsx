@@ -98,7 +98,7 @@ export default function Blogs() {
         <div className="grid grid-cols-1 gap-[1.875rem] sm:grid-cols-2 md:grid-cols-3">
           {/* Posts */}
           {status == true ? <>
-            <div className="text-centre">
+            <div className="text-center">
               <center><h3>Loading...</h3></center>
             </div>
           </>
@@ -138,7 +138,7 @@ export default function Blogs() {
                     <h2 className="mb-4 font-display text-xl text-jacarta-700 hover:text-accent dark:text-white dark:hover:text-accent">
                       <Link href={`/single-post/${elm.url}`}> {elm.heading.slice(0,22)+"..."}</Link>
                     </h2>
-                    <div className="mb-8 dark:text-jacarta-200 hset">{elm.content.length > 100 ? <div dangerouslySetInnerHTML={{ __html: elm.content.slice(0, 70) + '...' }}></div> : <div dangerouslySetInnerHTML={{ __html: elm.content }}></div>}</div>
+                    <div className="mb-8 dark:text-jacarta-200 min-h-[40px] h-full">{elm.content.length > 100 ? <div dangerouslySetInnerHTML={{ __html: elm.content.slice(0, 70) + '...' }}></div> : <div dangerouslySetInnerHTML={{ __html: elm.content }}></div>}</div>
 
                     {/* Date / Time */}
                     <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">

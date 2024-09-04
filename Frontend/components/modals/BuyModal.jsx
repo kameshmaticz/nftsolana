@@ -13,7 +13,7 @@ import Config from '@/Config/config'
 
 //NPM
 import { useDispatch, useSelector } from "react-redux";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 
 import solanaContract from '@/utlis/hooks/solanaContractHook'
@@ -41,6 +41,7 @@ console.log("itemaaaaaaaaa",item)
   const dispatch = useDispatch()
   const userData = useSelector((state) => state.LoginReducer.User.payload);
   const [referredUser, setReferredUser] = useState({});
+  const closeref = useRef()
   const [Btn, SetBtn] = useState("done");
   const [App_Btn, SetApp_Btn] = useState(
     // owner.CoinName != "BNB" ? "init" : 
@@ -242,6 +243,7 @@ console.log("itemaaaaaaaaa",item)
             closeOnClick: true,
           });
           // SetApp_Btn("done");
+          closeref.current.click();
           navigate(`/user/${userData.CustomUrl}`, {
             state: { Tab: "owned" },
           });
@@ -350,6 +352,7 @@ console.log("itemaaaaaaaaa",item)
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              ref={closeref}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

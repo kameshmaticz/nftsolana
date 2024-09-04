@@ -127,12 +127,12 @@ export default function FileUpload({ onChange , userPayload , NFTFormValue}) {
         />
       </div>
       <div>
-      <div className="pTag">Item Preview</div>
+      <div className="pTag mb-[10px]">Item Preview</div>
       
       <div className="block rounded-2.5xl w-[320px] border border-jacarta-100 bg-white p-[1.1875rem] transition-shadow hover:shadow-lg dark:border-jacarta-700 dark:bg-jacarta-700">
       <figure className="relative">
         <ImgAudVideo 
-file={isEmpty(image) ? "/img/products/item_5.jpg" : image}
+file={isEmpty(image) ? "/img/uploadimg.svg" : image}
 type={
   file
     ? file?.type?.includes("image") 
@@ -301,7 +301,7 @@ type={
       </div>
       <div className="mt-2 text-sm">
         <span className="mr-1 text-jacarta-700 dark:text-jacarta-200">
-         8.49 ETH
+         8.49 SOL
         </span>
         <span className="text-jacarta-500 dark:text-jacarta-300">
          2/8

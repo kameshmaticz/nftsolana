@@ -2,7 +2,7 @@
 import { explore, homes, pages, resources } from "@/data/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import config from "../../../Config/config"
 //npm
 import { useSelector } from "react-redux";
 
@@ -55,7 +55,7 @@ export default function Nav() {
           </i>
         </Link>
         <ul
-          className="dropdown-menu group-hover:visible lg:invisible -left-6 top-[85%] z-10 hidden grid-flow-col grid-rows-5 gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover:opacity-100 dark:bg-jacarta-800 lg:absolute lg:!grid lg:translate-y-4 lg:py-8 lg:px-5 lg:opacity-0 lg:shadow-2xl lg:group-hover:translate-y-2"
+          className="dropdown-menu group-hover:visible lg:invisible -left-6 top-[85%] z-10 hidden grid-flow-col grid-rows-5 gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover:opacity-100 dark:bg-jacarta-800 lg:absolute lg:!grid lg:translate-y-4 lg:py-8 lg:px-5 lg:opacity-0 lg:shadow-2xl lg:group-hover:translate-y-2 w-max"
           aria-labelledby="navDropdown-1"
         >
            <li key={'All'}>
@@ -69,7 +69,9 @@ export default function Nav() {
               </Link>
             </li>
           {categories.map((elm, i) => (
-            <li key={i}>
+            <li key={i} className="flex gap-[2px] mb-[5px]">
+              {console.log("sdggxx" , elm )}
+              <img src={config.IMG_URL+"/category/"+elm.image} className="w-[40px] h-[40px] rounded-[50%] p-[2px] object-cover"/>
               <Link
                 href={`/collections/${elm.value}`}
                 className="flex items-center rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600"

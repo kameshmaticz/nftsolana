@@ -1,6 +1,6 @@
 export const links = [
   { id: 1, name: "Authors", href: "/user/2" },
-  { id: 2, name: "Collection", href: "/collections" },
+  { id: 2, name: "My Item", href: "/user/1" },
   { id: 3, name: "Author Profile", href: "/user/3" },
   { id: 4, name: "Create Item", href: "/create" },
 ];

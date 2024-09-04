@@ -378,7 +378,7 @@ export default function Topnft() {
 
         <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
           { hotactionstate == true  ? 
-          <div className="text-centre">
+          <div className="text-center">
                             <h3>Loading...</h3>
            </div> : 
            payload && HotAuctionData[HotAuctionData.tab]?.length > 0 ?
